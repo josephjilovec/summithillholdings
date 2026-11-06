@@ -5,5 +5,10 @@ export const site = {
   description:
     "A multi-asset venture studio led through venture design, portfolio strategy, capital alignment, foundational product architecture, and operator partnerships.",
   location: "Phoenix, Arizona",
-  booking: "/contact"
+  booking: "/contact",
+  emails: {
+    contact: "contact@summithillholdings.com",
+    hello: "hello@summithillholdings.com",
+    support: "support@summithillholdings.com"
+  }
 };

@@ -17,6 +17,9 @@ export function SiteFooter() {
           <div className="footer-connect-links">
             <Link href="/contact">Contact</Link>
             <Link href={site.booking}>Discuss a venture ↗</Link>
+            <a href="mailto:contact@summithillholdings.com">contact@summithillholdings.com</a>
+            <a href="mailto:hello@summithillholdings.com">hello@summithillholdings.com</a>
+            <a href="mailto:support@summithillholdings.com">support@summithillholdings.com</a>
           </div>
         </div>
       </div>
