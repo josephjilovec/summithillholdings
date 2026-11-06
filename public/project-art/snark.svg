@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="62" y1="38" x2="1203" y2="849" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B070B"/>
+      <stop offset=".56" stop-color="#170A12"/>
+      <stop offset="1" stop-color="#09080B"/>
+    </linearGradient>
+    <radialGradient id="pinkGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(922 414) rotate(155) scale(452 360)">
+      <stop stop-color="#FF4F8B" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#FF4F8B" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="prism" x1="678" y1="281" x2="981" y2="618" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF8FB" stop-opacity=".98"/>
+      <stop offset=".42" stop-color="#FF85AE"/>
+      <stop offset="1" stop-color="#FF3D7E"/>
+    </linearGradient>
+    <linearGradient id="acid" x1="794" y1="219" x2="1036" y2="667" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF57A"/>
+      <stop offset="1" stop-color="#C2FF70"/>
+    </linearGradient>
+    <filter id="pinkSoft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="31"/></filter>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <rect width="1280" height="900" rx="34" fill="url(#bg)"/>
+  <ellipse cx="920" cy="430" rx="430" ry="335" fill="url(#pinkGlow)"/>
+  <ellipse cx="950" cy="440" rx="212" ry="192" fill="#FF4F8B" fill-opacity=".10" filter="url(#pinkSoft)"/>
+
+  <g opacity=".82">
+    <path d="M618 254L836 176L1068 296L1016 612L792 710L591 572Z" fill="white" fill-opacity=".028" stroke="white" stroke-opacity=".08"/>
+    <path d="M652 291L836 225L1017 320L974 575L793 658L629 545Z" stroke="#FF4F8B" stroke-opacity=".18"/>
+  </g>
+
+  <!-- two voices feeding one decision -->
+  <g>
+    <path d="M643 334C643 292 677 258 719 258H776C818 258 852 292 852 334V378C852 420 818 454 776 454H740L690 491L703 454H719C677 454 643 420 643 378V334Z" fill="#FF4F8B" fill-opacity=".12" stroke="#FF6F9F" stroke-opacity=".75" stroke-width="2"/>
+    <path d="M877 252C877 215 907 185 944 185H996C1033 185 1063 215 1063 252V288C1063 325 1033 355 996 355H976L1012 393L949 355H944C907 355 877 325 877 288V252Z" fill="#F2FF7A" fill-opacity=".07" stroke="#EAFB79" stroke-opacity=".70" stroke-width="2"/>
+    <text x="692" y="352" fill="#FFD3E2" font-family="Arial, sans-serif" font-size="58" font-weight="700">“</text>
+    <text x="929" y="280" fill="#F5FF9D" font-family="Arial, sans-serif" font-size="58" font-weight="700">?</text>
+  </g>
+
+  <!-- campaign decision prism -->
+  <g filter="url(#glow)">
+    <path d="M820 401L923 346L1025 405L1017 520L913 577L811 518Z" fill="url(#prism)" fill-opacity=".13" stroke="url(#prism)" stroke-width="3"/>
+    <path d="M820 401L913 456L1025 405M913 456V577" stroke="#FFD4E3" stroke-opacity=".72" stroke-width="2"/>
+    <circle cx="913" cy="456" r="13" fill="#FF4F8B" stroke="white" stroke-width="3"/>
+  </g>
+
+  <!-- performance signal -->
+  <path d="M704 641L745 616L782 635L823 577L861 615L909 562L951 600L1002 529L1053 546" stroke="url(#acid)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#EDFF8A"><circle cx="704" cy="641" r="5"/><circle cx="823" cy="577" r="5"/><circle cx="909" cy="562" r="5"/><circle cx="1002" cy="529" r="5"/></g>
+
+  <g>
+    <rect x="82" y="80" width="294" height="40" rx="20" fill="white" fill-opacity=".05" stroke="white" stroke-opacity=".08"/>
+    <circle cx="107" cy="100" r="5" fill="#FF4F8B"/>
+    <text x="128" y="106" fill="#FFC3D7" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="3">CREATIVE INTELLIGENCE</text>
+    <text x="82" y="208" fill="white" font-family="Arial, sans-serif" font-size="70" font-weight="700" letter-spacing="-3">SNARK</text>
+    <text x="82" y="274" fill="#FF4F8B" font-family="Arial, sans-serif" font-size="70" font-weight="700" letter-spacing="-3">LOGIC</text>
+    <text x="85" y="330" fill="white" fill-opacity=".58" font-family="Arial, sans-serif" font-size="19" letter-spacing="1.1">MAKE THE IDEA ARGUE FOR ITSELF.</text>
+    <text x="85" y="362" fill="white" fill-opacity=".37" font-family="Arial, sans-serif" font-size="17">Creative tension → risk check → performance signal.</text>
+  </g>
+
+  <g transform="translate(82 665)">
+    <rect width="380" height="106" rx="18" fill="white" fill-opacity=".035" stroke="white" stroke-opacity=".075"/>
+    <text x="22" y="31" fill="white" fill-opacity=".38" font-family="Arial, sans-serif" font-size="12" letter-spacing="2.4">DECISION COUNCIL</text>
+    <text x="22" y="62" fill="white" fill-opacity=".78" font-family="Arial, sans-serif" font-size="15">CREATIVE · BEHAVIOR · FINANCE · RISK</text>
+    <text x="22" y="85" fill="#EFFF83" fill-opacity=".72" font-family="Arial, sans-serif" font-size="15">OUTPUT: TESTABLE CAMPAIGN CONCEPT</text>
+  </g>
+
+  <g>
+    <circle cx="1140" cy="170" r="25" stroke="#FF4F8B" stroke-opacity=".25"/><circle cx="1140" cy="170" r="6" fill="#FF4F8B"/>
+    <circle cx="1120" cy="704" r="18" stroke="#EFFF83" stroke-opacity=".25"/><circle cx="1120" cy="704" r="4" fill="#EFFF83"/>
+  </g>
+  <rect x="42" y="42" width="1196" height="816" rx="28" stroke="white" stroke-opacity=".055"/>
+</svg>

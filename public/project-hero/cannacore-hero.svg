@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" fill="none">
+<defs><radialGradient id="bg" cx="0" cy="0" r="1" gradientTransform="translate(600 710) rotate(90) scale(800 690)"><stop stop-color="#183C23"/><stop offset=".5" stop-color="#0B1A10"/><stop offset="1" stop-color="#050806"/></radialGradient><linearGradient id="leaf" x1="390" y1="330" x2="820" y2="1110"><stop stop-color="#C9FFD2"/><stop offset=".48" stop-color="#75D58A"/><stop offset="1" stop-color="#357D48"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="20"/></filter></defs>
+<rect width="1200" height="1500" fill="url(#bg)"/>
+<circle cx="600" cy="720" r="440" stroke="#87E199" stroke-opacity=".12"/><circle cx="600" cy="720" r="330" stroke="#87E199" stroke-opacity=".18"/><circle cx="600" cy="720" r="225" fill="#65C87C" opacity=".08" filter="url(#glow)"/>
+<g transform="translate(600 730)" fill="url(#leaf)" stroke="#D5FFDC" stroke-width="2">
+ <path d="M0 390C-22 245 -8 115 0 -10C8 115 22 245 0 390Z"/>
+ <path d="M-15 28C-180 -12 -270 -130 -300 -285C-150 -230 -48 -120 -15 28Z"/>
+ <path d="M15 28C180 -12 270 -130 300 -285C150 -230 48 -120 15 28Z"/>
+ <path d="M-32 120C-190 145 -305 85 -370 -25C-225 -44 -95 15 -32 120Z"/>
+ <path d="M32 120C190 145 305 85 370 -25C225 -44 95 15 32 120Z"/>
+ <path d="M-24 205C-140 270 -250 252 -330 175C-210 120 -100 135 -24 205Z"/>
+ <path d="M24 205C140 270 250 252 330 175C210 120 100 135 24 205Z"/>
+</g>
+<g stroke="#9EE6AA" stroke-width="2" opacity=".48"><path d="M325 340C470 430 730 430 875 340"/><path d="M325 1110C470 1020 730 1020 875 1110"/></g>
+<g fill="#A8F0B4" opacity=".72"><circle cx="320" cy="340" r="7"/><circle cx="880" cy="340" r="7"/><circle cx="320" cy="1110" r="7"/><circle cx="880" cy="1110" r="7"/></g>
+<path d="M250 1260H950" stroke="#75D58A" stroke-width="3" opacity=".45"/>
+</svg>

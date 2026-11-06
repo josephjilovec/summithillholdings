@@ -1,0 +1,80 @@
+.venture-universe-v3 .venture-selector-eyebrow {
+  font-size: 10px !important;
+}
+
+.portfolio-command-section {
+  max-width: 1720px;
+}
+
+.portfolio-page-hero {
+  max-width: 1720px;
+}
+
+.venture-universe-v3 .venture-selector-intro {
+  font-size: 13.5px !important;
+  line-height: 1.65 !important;
+}
+
+.venture-universe-v3 .venture-selector-count span {
+  font-size: 11px !important;
+}
+
+.venture-universe-v3 .venture-node-card {
+  min-height: 140px !important;
+  padding: 15px !important;
+}
+
+.venture-universe-v3 .venture-node-topline {
+  font-size: 10px !important;
+  margin-bottom: 22px !important;
+  letter-spacing: .11em !important;
+}
+
+.venture-universe-v3 .venture-node-copy-v3 strong {
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.015em !important;
+}
+
+.venture-universe-v3 .venture-node-copy-v3 small {
+  font-size: 10.5px !important;
+  line-height: 1.35 !important;
+  margin-top: 6px !important;
+  color: #98a5ad !important;
+}
+
+.venture-universe-v3 .venture-node-body-v3 {
+  grid-template-columns: 42px minmax(0, 1fr) !important;
+  gap: 12px !important;
+}
+
+.venture-universe-v3 .venture-node-icon {
+  width: 42px !important;
+  height: 42px !important;
+}
+
+.venture-universe-v3 .venture-selector-hint {
+  font-size: 10px !important;
+}
+
+@media (max-width: 1180px) {
+  .venture-universe-v3 .venture-node-card {
+    min-height: 132px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .venture-universe-v3 .venture-node-card {
+    min-height: 124px !important;
+    padding: 14px !important;
+  }
+
+  .venture-universe-v3 .venture-node-copy-v3 strong {
+    font-size: 14.5px !important;
+  }
+
+  .venture-universe-v3 .venture-node-copy-v3 small,
+  .venture-universe-v3 .venture-node-topline {
+    font-size: 10px !important;
+  }
+}

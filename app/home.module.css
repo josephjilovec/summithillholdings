@@ -1,0 +1,223 @@
+.selectedWorldsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.selectedWorld {
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #0a0e11;
+  transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+
+.selectedWorld.wide {
+  grid-column: span 2;
+  min-height: 410px;
+}
+
+.loadingWorld {
+  background:
+    linear-gradient(105deg, transparent 34%, rgba(255,255,255,.045) 45%, transparent 56%) 0 0 / 220% 100%,
+    linear-gradient(145deg, rgba(85,217,255,.055), transparent 48%),
+    #0a0e11;
+  animation: featuredLoading 1.2s ease-in-out infinite;
+}
+
+@keyframes featuredLoading {
+  to { background-position: -220% 0, 0 0, 0 0; }
+}
+
+.selectedWorld:hover,
+.selectedWorld:focus-visible {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--venture-accent) 55%, var(--line));
+  box-shadow: 0 28px 70px rgba(0,0,0,.28), 0 0 44px color-mix(in srgb, var(--venture-accent) 10%, transparent);
+}
+
+.selectedWorld:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+
+.worldImage {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+}
+
+.worldImage img {
+  object-fit: cover;
+  opacity: .62;
+  transform: scale(1.02);
+  filter: saturate(.82) contrast(1.06) brightness(.8);
+  transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .35s ease, filter .35s ease;
+}
+
+.selectedWorld:hover .worldImage img,
+.selectedWorld:focus-visible .worldImage img {
+  transform: scale(1.055);
+  opacity: .72;
+  filter: saturate(.95) contrast(1.08) brightness(.86);
+}
+
+.worldShade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(180deg, rgba(4,7,9,.18) 0%, rgba(4,7,9,.38) 38%, rgba(4,7,9,.95) 100%),
+    linear-gradient(135deg, color-mix(in srgb, var(--venture-accent) 22%, transparent), transparent 55%);
+}
+
+.worldContent {
+  min-height: inherit;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.worldMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: rgba(255,255,255,.72);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+}
+
+.worldMeta span:first-child {
+  color: var(--venture-accent);
+}
+
+.worldContent p {
+  margin: 0 0 10px;
+  color: rgba(255,255,255,.68);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+
+.worldContent h3 {
+  max-width: 640px;
+  margin: 0;
+  font-size: clamp(36px, 4vw, 66px);
+  line-height: .92;
+  letter-spacing: -.055em;
+  font-weight: 590;
+}
+
+.worldFooter {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px;
+  align-items: end;
+}
+
+.worldFooter > span {
+  max-width: 620px;
+  color: rgba(228,235,239,.72);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.worldFooter i {
+  white-space: nowrap;
+  color: #fff;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.worldsCta {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.worldsCta > span {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingWorld { animation: none; }
+}
+
+@media (max-width: 1000px) {
+  .selectedWorldsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .selectedWorld.wide {
+    grid-column: span 2;
+  }
+
+  .worldFooter {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .selectedWorldsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .selectedWorld,
+  .selectedWorld.wide {
+    grid-column: auto;
+    min-height: 330px;
+  }
+
+  .worldContent {
+    padding: 24px;
+  }
+
+  .worldContent h3 {
+    font-size: clamp(38px, 12vw, 58px);
+  }
+
+  .worldMeta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .worldsCta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selectedWorld,
+  .worldImage img {
+    transition: none;
+  }
+
+  .selectedWorld:hover,
+  .selectedWorld:focus-visible,
+  .selectedWorld:hover .worldImage img,
+  .selectedWorld:focus-visible .worldImage img {
+    transform: none;
+  }
+}

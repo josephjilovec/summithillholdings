@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900" fill="none">
+<defs>
+  <radialGradient id="g" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 320) rotate(145) scale(700 520)"><stop stop-color="#74A9B8" stop-opacity=".34"/><stop offset="1" stop-color="#0A1012" stop-opacity="0"/></radialGradient>
+  <linearGradient id="line" x1="340" y1="700" x2="1030" y2="140" gradientUnits="userSpaceOnUse"><stop stop-color="#B98E62"/><stop offset=".52" stop-color="#74A9B8"/><stop offset="1" stop-color="white" stop-opacity=".48"/></linearGradient>
+  <filter id="blur"><feGaussianBlur stdDeviation="36"/></filter>
+  <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" stroke="white" stroke-opacity=".05"/></pattern>
+</defs>
+<rect width="1280" height="900" fill="#0A1012"/><rect width="1280" height="900" fill="url(#grid)"/><rect width="1280" height="900" fill="url(#g)"/>
+<circle cx="900" cy="310" r="190" fill="#74A9B8" fill-opacity=".07" filter="url(#blur)"/>
+<g stroke="url(#line)"><circle cx="855" cy="410" r="230" stroke-width="3"/><circle cx="855" cy="410" r="145" stroke-width="2" stroke-opacity=".65"/><path d="M855 148V672M593 410H1117" stroke-width="1.5" stroke-opacity=".5"/><path d="M855 192L920 410L855 628L790 410Z" fill="#74A9B8" fill-opacity=".08" stroke-width="2"/></g>
+<circle cx="855" cy="410" r="10" fill="#B98E62"/><path d="M855 410L955 270" stroke="#B98E62" stroke-width="4"/><circle cx="955" cy="270" r="7" fill="#B98E62"/>
+<text x="78" y="94" fill="white" fill-opacity=".55" font-family="Arial, sans-serif" font-size="18" letter-spacing="5">CURATION / COMMERCE</text>
+<text x="76" y="168" fill="white" font-family="Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-2">ALDER &amp; MERIDIAN</text>
+<text x="80" y="825" fill="white" fill-opacity=".42" font-family="Arial, sans-serif" font-size="14" letter-spacing="3">SUMMIT HILL HOLDINGS · PROJECT ART / 2026</text>
+<rect x="72" y="62" width="1136" height="776" rx="24" stroke="white" stroke-opacity=".09"/>
+</svg>

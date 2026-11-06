@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" rx="40" fill="#0C1B2A"/>
+  <circle cx="980" cy="160" r="240" fill="#14344B" opacity="0.6"/>
+  <circle cx="1040" cy="210" r="140" fill="#20A39E" opacity="0.18"/>
+  <circle cx="200" cy="680" r="300" fill="#E5B869" opacity="0.08"/>
+
+  <!-- Living space contour lines -->
+  <path d="M140 640C300 520 460 560 620 490C780 420 920 470 1080 390" stroke="#20A39E" stroke-width="3" stroke-linecap="round" opacity="0.35"/>
+  <path d="M160 680C340 570 500 610 680 530C840 450 960 490 1100 420" stroke="#E5B869" stroke-width="2" stroke-linecap="round" opacity="0.25"/>
+
+  <!-- Central Ameliora emblem -->
+  <g transform="translate(480, 220)">
+    <rect width="240" height="240" rx="48" fill="#142B3F" stroke="#20A39E" stroke-width="2" stroke-opacity="0.4"/>
+    <circle cx="120" cy="120" r="80" stroke="#20A39E" stroke-width="3" stroke-opacity="0.25"/>
+    <path d="M120 54 C84 86 76 138 120 190 C164 138 156 86 120 54 Z" fill="url(#leafGrad)"/>
+    <circle cx="120" cy="90" r="16" fill="#E5B869"/>
+    <path d="M80 158 C104 142 136 142 160 158" stroke="#E5B869" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Typography & labels -->
+  <text x="90" y="110" fill="#E6F4F1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" letter-spacing="0.05em">AMELIORA / LIVING CONDITIONS</text>
+  <text x="90" y="155" fill="#84A7BA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20">Practical upgrades · Radical transparency · Shared prosperity</text>
+  <text x="90" y="730" fill="#5F8195" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16">For-profit impact model · Majority surplus community reinvestment · Nonprofits &amp; churches</text>
+
+  <defs>
+    <linearGradient id="leafGrad" x1="120" y1="54" x2="120" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#20A39E"/>
+      <stop offset="100%" stop-color="#48A9A6"/>
+    </linearGradient>
+  </defs>
+</svg>
