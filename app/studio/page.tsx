@@ -11,7 +11,7 @@ export default function StudioPage() {
       <section className="page-hero studio-page-hero">
         <div className="studio-hero-visual" aria-hidden="true">
           <Image
-            src="/images/studio-architectural-monolith.webp"
+            src="/images/summit-hill-brand-seal.jpg"
             alt=""
             fill
             priority

@@ -9,7 +9,9 @@ export function SiteFooter() {
         <div className={styles.footerMain}>
           <div>
             <Link href="/" className={styles.brand} aria-label="Summit Hill Holdings home">
-              <span className={styles.monogram} aria-hidden="true">SH</span>
+              <span className={styles.monogram} aria-hidden="true">
+                <img src="/images/summit-hill-logo-emblem.jpg" alt="" />
+              </span>
               <strong className={styles.brandName}>Summit Hill Holdings</strong>
             </Link>
             <p className={styles.description}>Venture development, portfolio strategy, and operator partnerships across commerce, civic initiatives, behavioral design, technology, and creative work.</p>

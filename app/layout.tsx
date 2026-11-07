@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Summit Hill Holdings", url: site.url }],
   creator: "Summit Hill Holdings",
   alternates: { canonical: site.url },
+  icons: {
+    icon: "/icons/mark.svg",
+    shortcut: "/icons/mark.svg",
+    apple: "/images/summit-hill-logo-emblem.jpg",
+  },
   openGraph: {
     type: "website",
     url: site.url,

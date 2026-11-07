@@ -62,13 +62,22 @@
 .monogram {
   display: grid;
   place-items: center;
-  flex: 0 0 36px;
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(194, 159, 100, .6);
-  color: #d1ad72;
-  font: 700 12px/1 Georgia, serif;
-  letter-spacing: -.06em;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(194, 159, 100, .62);
+  border-radius: 6px;
+  background: #080808;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .55), 0 0 18px rgba(176, 141, 87, .16);
+}
+
+.monogram img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.38);
+  display: block;
 }
 
 .brandName {

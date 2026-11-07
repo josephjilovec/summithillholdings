@@ -1,6 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="14" fill="#050607" stroke="#B08D57" stroke-width="2"/>
-  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#F3EEE6" font-family="sans-serif" font-weight="700" font-size="24" letter-spacing="1">
-    SH
-  </text>
+  <defs>
+    <linearGradient id="shGold" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E5C992"/>
+      <stop offset="50%" stop-color="#B08D57"/>
+      <stop offset="100%" stop-color="#7A5A32"/>
+    </linearGradient>
+    <linearGradient id="shFacet" x1="32" y1="14" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B08D57" stop-opacity="0.48"/>
+      <stop offset="100%" stop-color="#8A6A3F" stop-opacity="0.12"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#080808" stroke="url(#shGold)" stroke-width="1.75"/>
+  <polygon points="32,8 54,20 54,44 32,56 10,44 10,20" stroke="url(#shGold)" stroke-opacity="0.35" stroke-width="1"/>
+  <path d="M14 44L27 21L35 33L41 25L50 44H14Z" fill="url(#shFacet)"/>
+  <path d="M14 44L27 21L35 33L41 25L50 44" stroke="url(#shGold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M27 21L32 44" stroke="url(#shGold)" stroke-opacity="0.65" stroke-width="1.4"/>
+  <path d="M12 44H52" stroke="url(#shGold)" stroke-width="1.8" stroke-linecap="round"/>
 </svg>

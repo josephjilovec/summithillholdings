@@ -45,7 +45,9 @@ export function SiteHeader() {
     <header className={styles.header} ref={header}>
       <div className={`${styles.inner} ${styles.headerInner}`}>
         <Link href="/" className={styles.brand} aria-label="Summit Hill Holdings home" onClick={() => setOpen(false)}>
-          <span className={styles.monogram} aria-hidden="true">SH</span>
+          <span className={styles.monogram} aria-hidden="true">
+            <img src="/images/summit-hill-logo-emblem.jpg" alt="" />
+          </span>
           <strong className={styles.brandName}>Summit Hill Holdings</strong>
         </Link>
         <nav className={styles.desktopNav} aria-label="Primary navigation">
