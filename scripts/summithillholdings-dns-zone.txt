@@ -1,0 +1,35 @@
+$ORIGIN summithillholdings.com.
+$TTL 3600
+
+; === Holding Company Apex & WWW (Vercel) ===
+@                       IN  A      216.198.79.1
+www                     IN  CNAME  cname.vercel-dns.com.
+
+; === All 27 Portfolio Venture Subdomains (Vercel) ===
+myhealthyaura           IN  CNAME  cname.vercel-dns.com.
+swiftdealsolutions      IN  CNAME  cname.vercel-dns.com.
+djhotwax                IN  CNAME  37a94b3bc410c465.vercel-dns-017.com.
+vantahelix              IN  CNAME  393b0793ed5b7a8c.vercel-dns-017.com.
+cannacoreseeds          IN  CNAME  cname.vercel-dns.com.
+snarklogic              IN  CNAME  3580b508a07908d3.vercel-dns-017.com.
+aldermeridian           IN  CNAME  a674c7546f0b7095.vercel-dns-017.com.
+jentlemens              IN  CNAME  d6744a2d7a0481bf.vercel-dns-017.com.
+tfsf                    IN  CNAME  6c8b1a20fe375cfa.vercel-dns-017.com.
+unitedamericanfuture    IN  CNAME  bc15c9fb60fb54a0.vercel-dns-017.com.
+worldforwardfoundation  IN  CNAME  13b2e9660166b3e0.vercel-dns-017.com.
+payerdelta              IN  CNAME  e7b72d534a413609.vercel-dns-017.com.
+givewiseinsights        IN  CNAME  247f628cbd18ae9c.vercel-dns-017.com.
+advibecentral           IN  CNAME  cname.vercel-dns.com.
+kineticaromatics        IN  CNAME  45f016f6865f51ca.vercel-dns-017.com.
+atlasassets             IN  CNAME  37a94b3bc410c465.vercel-dns-017.com.
+autocompcorp            IN  CNAME  37a94b3bc410c465.vercel-dns-017.com.
+crestlinemetals         IN  CNAME  39c3b1260dc72904.vercel-dns-017.com.
+amelioras               IN  CNAME  1aacf4990885f8b0.vercel-dns-017.com.
+eversteadliving         IN  CNAME  32d5176801ce01b5.vercel-dns-017.com.
+qshipsupplyco           IN  CNAME  7b0421a052712535.vercel-dns-017.com.
+solvanti                IN  CNAME  c23bdb46018b0692.vercel-dns-017.com.
+techwater               IN  CNAME  18a9b25931cdfef3.vercel-dns-017.com.
+motoryn                 IN  CNAME  88691644697c3111.vercel-dns-017.com.
+experienceelsewhere     IN  CNAME  844a1bb63633ae41.vercel-dns-017.com.
+kinora                  IN  CNAME  15dbbea17ffdc795.vercel-dns-017.com.
+aliasalibi              IN  CNAME  37a94b3bc410c465.vercel-dns-017.com.
