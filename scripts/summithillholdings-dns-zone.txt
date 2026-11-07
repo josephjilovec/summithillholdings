@@ -5,6 +5,12 @@ $TTL 3600
 @                       IN  A      216.198.79.1
 www                     IN  CNAME  cname.vercel-dns.com.
 
+; === Cloudflare Email Routing + Google Outbound SPF ===
+@                       IN  MX     52 route1.mx.cloudflare.net.
+@                       IN  MX     41 route2.mx.cloudflare.net.
+@                       IN  MX     39 route3.mx.cloudflare.net.
+@                       IN  TXT    "v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all"
+
 ; === All 27 Portfolio Venture Subdomains (Vercel) ===
 myhealthyaura           IN  CNAME  cname.vercel-dns.com.
 swiftdealsolutions      IN  CNAME  cname.vercel-dns.com.

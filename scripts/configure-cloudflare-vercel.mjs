@@ -64,10 +64,40 @@ const VENTURE_DOMAIN_MAP = [
   { repo: "aliasalibi", subdomain: "aliasalibi", cname: "37a94b3bc410c465.vercel-dns-017.com" }
 ];
 
+const CRED_PATHS = [
+  "C:\\Users\\realj\\.summithill-credentials.json",
+  "/mnt/c/Users/realj/.summithill-credentials.json",
+  path.join(os.homedir(), ".summithill-credentials.json")
+];
+
+function readSavedCredentials() {
+  for (const cp of CRED_PATHS) {
+    try {
+      if (fs.existsSync(cp)) {
+        return JSON.parse(fs.readFileSync(cp, "utf8")) || {};
+      }
+    } catch {}
+  }
+  return {};
+}
+
+function saveCredentials(updates) {
+  const current = { ...readSavedCredentials(), ...updates };
+  for (const cp of CRED_PATHS) {
+    try {
+      fs.writeFileSync(cp, JSON.stringify(current, null, 2), "utf8");
+    } catch {}
+  }
+}
+
 function discoverVercelToken() {
   if (process.env.VERCEL_TOKEN && process.env.VERCEL_TOKEN.trim()) {
-    return process.env.VERCEL_TOKEN.trim();
+    const t = process.env.VERCEL_TOKEN.trim();
+    saveCredentials({ vercelToken: t });
+    return t;
   }
+  const saved = readSavedCredentials();
+  if (saved.vercelToken) return saved.vercelToken.trim();
   const candidates = [
     path.join(process.env.APPDATA || "", "xdg.data", "com.vercel.cli", "auth.json"),
     path.join(process.env.APPDATA || "", "com.vercel.cli", "Data", "auth.json"),
@@ -87,8 +117,12 @@ function discoverVercelToken() {
 
 function discoverCloudflareToken() {
   if (process.env.CLOUDFLARE_API_TOKEN && process.env.CLOUDFLARE_API_TOKEN.trim()) {
-    return process.env.CLOUDFLARE_API_TOKEN.trim();
+    const t = process.env.CLOUDFLARE_API_TOKEN.trim();
+    saveCredentials({ cloudflareToken: t });
+    return t;
   }
+  const saved = readSavedCredentials();
+  if (saved.cloudflareToken) return saved.cloudflareToken.trim();
   const candidates = [
     path.join(process.env.APPDATA || "", "xdg.config", ".wrangler", "config", "default.toml"),
     "/mnt/c/Users/realj/AppData/Roaming/xdg.config/.wrangler/config/default.toml",
@@ -177,6 +211,29 @@ async function configureCloudflare() {
 
   for (const v of VENTURE_DOMAIN_MAP) {
     await upsertDnsRecord("CNAME", v.subdomain, v.cname, false);
+  }
+
+  // Ensure SPF TXT record authorizes both Cloudflare Email Routing AND Google Gmail outbound SMTP (_spf.google.com)
+  const spfContent = "v=spf1 include:_spf.mx.cloudflare.net include:_spf.google.com ~all";
+  const existingSpf = existingRecords.find(
+    (r) => r.name === ZONE_NAME && r.type === "TXT" && typeof r.content === "string" && r.content.startsWith("v=spf1")
+  );
+  if (existingSpf) {
+    await cfRequest("PUT", `/zones/${zoneId}/dns_records/${existingSpf.id}`, {
+      type: "TXT",
+      name: ZONE_NAME,
+      content: spfContent,
+      ttl: 1
+    });
+    log(`  [UPDATED SPF] ${ZONE_NAME.padEnd(45)} -> TXT    ${spfContent}`);
+  } else {
+    await cfRequest("POST", `/zones/${zoneId}/dns_records`, {
+      type: "TXT",
+      name: ZONE_NAME,
+      content: spfContent,
+      ttl: 1
+    });
+    log(`  [CREATED SPF] ${ZONE_NAME.padEnd(45)} -> TXT    ${spfContent}`);
   }
 
   log(`\n=== 2. Configuring Cloudflare Email Routing on ${ZONE_NAME} ===`);
