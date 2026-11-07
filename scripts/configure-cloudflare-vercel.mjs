@@ -2,6 +2,11 @@
 /**
  * Summit Hill Holdings — Cloudflare DNS, Email Routing & Vercel Domain Cutover Automation
  *
+ * Automatically reads OAuth/API tokens from:
+ * - Vercel CLI (`%APPDATA%\xdg.data\com.vercel.cli\auth.json`) or `VERCEL_TOKEN`
+ * - Cloudflare Wrangler CLI (`%APPDATA%\xdg.config\.wrangler\config\default.toml`),
+ *   `CLOUDFLARE_API_TOKEN`, or `CLOUDFLARE_EMAIL` + `CLOUDFLARE_API_KEY`
+ *
  * Configures:
  * 1. Cloudflare DNS records for summithillholdings.com, www.summithillholdings.com,
  *    and all 27 venture subdomains (<venture>.summithillholdings.com).
@@ -9,15 +14,25 @@
  *    - contact@summithillholdings.com
  *    - hello@summithillholdings.com
  *    - support@summithillholdings.com
- *    (Can funnel all 3 into one unified inbox or separate AI-managed inboxes.)
- * 3. Vercel custom domain bindings across the holding company project and all 27 venture projects.
- *
- * Usage:
- *   CLOUDFLARE_API_TOKEN="..." VERCEL_TOKEN="..." CF_EMAIL_DESTINATION="realjjemail@gmail.com" node scripts/configure-cloudflare-vercel.mjs
+ * 3. Vercel custom domain bindings across all 28 portfolio projects (Apex + WWW + 27 Venture Subdomains).
  */
+
+import fs from "node:fs";
+import path from "node:path";
+import os from "node:os";
 
 const ZONE_NAME = "summithillholdings.com";
 const VERCEL_APEX_IP = "216.198.79.1";
+
+const LOG_LINES = [];
+function log(msg = "") {
+  console.log(msg);
+  LOG_LINES.push(`[${new Date().toISOString()}] ${msg}`);
+}
+function warn(msg = "") {
+  console.warn(msg);
+  LOG_LINES.push(`[${new Date().toISOString()}] [WARN] ${msg}`);
+}
 
 const VENTURE_DOMAIN_MAP = [
   { repo: "myhealthyaura", subdomain: "myhealthyaura", cname: "cname.vercel-dns.com" },
@@ -49,12 +64,55 @@ const VENTURE_DOMAIN_MAP = [
   { repo: "aliasalibi", subdomain: "aliasalibi", cname: "37a94b3bc410c465.vercel-dns-017.com" }
 ];
 
-const cfToken = process.env.CLOUDFLARE_API_TOKEN || "";
-const cfEmail = process.env.CLOUDFLARE_EMAIL || "";
-const cfGlobalKey = process.env.CLOUDFLARE_API_KEY || "";
-const vercelToken = process.env.VERCEL_TOKEN || "";
+function discoverVercelToken() {
+  if (process.env.VERCEL_TOKEN && process.env.VERCEL_TOKEN.trim()) {
+    return process.env.VERCEL_TOKEN.trim();
+  }
+  const candidates = [
+    path.join(process.env.APPDATA || "", "xdg.data", "com.vercel.cli", "auth.json"),
+    path.join(process.env.APPDATA || "", "com.vercel.cli", "Data", "auth.json"),
+    "/mnt/c/Users/realj/AppData/Roaming/xdg.data/com.vercel.cli/auth.json",
+    path.join(os.homedir(), ".local", "share", "com.vercel.cli", "auth.json")
+  ];
+  for (const p of candidates) {
+    try {
+      if (fs.existsSync(p)) {
+        const data = JSON.parse(fs.readFileSync(p, "utf8"));
+        if (data && data.token) return data.token.trim();
+      }
+    } catch {}
+  }
+  return "";
+}
 
-const defaultInbox = process.env.CF_EMAIL_DESTINATION || "realjjemail@gmail.com";
+function discoverCloudflareToken() {
+  if (process.env.CLOUDFLARE_API_TOKEN && process.env.CLOUDFLARE_API_TOKEN.trim()) {
+    return process.env.CLOUDFLARE_API_TOKEN.trim();
+  }
+  const candidates = [
+    path.join(process.env.APPDATA || "", "xdg.config", ".wrangler", "config", "default.toml"),
+    "/mnt/c/Users/realj/AppData/Roaming/xdg.config/.wrangler/config/default.toml",
+    path.join(os.homedir(), ".wrangler", "config", "default.toml"),
+    path.join(os.homedir(), ".config", ".wrangler", "config", "default.toml")
+  ];
+  for (const p of candidates) {
+    try {
+      if (fs.existsSync(p)) {
+        const text = fs.readFileSync(p, "utf8");
+        const m = text.match(/oauth_token\s*=\s*"([^"]+)"/);
+        if (m && m[1]) return m[1].trim();
+      }
+    } catch {}
+  }
+  return "";
+}
+
+const cfToken = discoverCloudflareToken();
+const cfEmail = (process.env.CLOUDFLARE_EMAIL || "").trim();
+const cfGlobalKey = (process.env.CLOUDFLARE_API_KEY || "").trim();
+const vercelToken = discoverVercelToken();
+
+const defaultInbox = (process.env.CF_EMAIL_DESTINATION || "realjjemail@gmail.com").trim();
 const EMAIL_ROUTES = [
   { address: `contact@${ZONE_NAME}`, destination: process.env.CF_EMAIL_DEST_CONTACT || defaultInbox, name: "Summit Hill Executive & Capital Contact" },
   { address: `hello@${ZONE_NAME}`, destination: process.env.CF_EMAIL_DEST_HELLO || defaultInbox, name: "Summit Hill General & Venture Hello" },
@@ -62,44 +120,43 @@ const EMAIL_ROUTES = [
 ];
 
 function cfHeaders() {
-  if (cfToken) {
-    return { Authorization: `Bearer ${cfToken}`, "Content-Type": "application/json" };
-  }
   if (cfEmail && cfGlobalKey) {
     return { "X-Auth-Email": cfEmail, "X-Auth-Key": cfGlobalKey, "Content-Type": "application/json" };
+  }
+  if (cfToken) {
+    return { Authorization: `Bearer ${cfToken}`, "Content-Type": "application/json" };
   }
   return null;
 }
 
-async function cfRequest(method, path, body) {
+async function cfRequest(method, apiPath, body) {
   const headers = cfHeaders();
-  if (!headers) throw new Error("No Cloudflare credentials provided.");
-  const res = await fetch(`https://api.cloudflare.com/client/v4${path}`, {
+  if (!headers) throw new Error("No Cloudflare credentials found.");
+  const res = await fetch(`https://api.cloudflare.com/client/v4${apiPath}`, {
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined
   });
   const json = await res.json();
   if (!json.success) {
-    throw new Error(`Cloudflare API ${method} ${path} failed: ${JSON.stringify(json.errors)}`);
+    throw new Error(`Cloudflare API ${method} ${apiPath} failed: ${JSON.stringify(json.errors)}`);
   }
   return json.result;
 }
 
 async function configureCloudflare() {
   if (!cfHeaders()) {
-    console.log("[SKIP] Cloudflare credentials not set in environment (CLOUDFLARE_API_TOKEN).");
+    log("[SKIP] Cloudflare credentials not provided or discovered.");
     return;
   }
-  console.log(`\n=== 1. Configuring Cloudflare Zone: ${ZONE_NAME} ===`);
+  log(`\n=== 1. Configuring Cloudflare Zone: ${ZONE_NAME} ===`);
   const zones = await cfRequest("GET", `/zones?name=${ZONE_NAME}`);
   if (!zones || zones.length === 0) {
     throw new Error(`Zone ${ZONE_NAME} not found in Cloudflare account.`);
   }
   const zoneId = zones[0].id;
-  console.log(`[+] Found Zone ID for ${ZONE_NAME}: ${zoneId}`);
+  log(`[+] Found Zone ID for ${ZONE_NAME}: ${zoneId}`);
 
-  // Fetch existing DNS records
   const existingRecords = await cfRequest("GET", `/zones/${zoneId}/dns_records?per_page=500`);
 
   async function upsertDnsRecord(type, name, content, proxied = false) {
@@ -108,48 +165,48 @@ async function configureCloudflare() {
     const payload = { type, name: fqdn, content, proxied, ttl: 1 };
     if (existing) {
       await cfRequest("PUT", `/zones/${zoneId}/dns_records/${existing.id}`, payload);
-      console.log(`  [UPDATED DNS] ${fqdn.padEnd(45)} -> ${type.padEnd(6)} ${content}`);
+      log(`  [UPDATED DNS] ${fqdn.padEnd(45)} -> ${type.padEnd(6)} ${content}`);
     } else {
       await cfRequest("POST", `/zones/${zoneId}/dns_records`, payload);
-      console.log(`  [CREATED DNS] ${fqdn.padEnd(45)} -> ${type.padEnd(6)} ${content}`);
+      log(`  [CREATED DNS] ${fqdn.padEnd(45)} -> ${type.padEnd(6)} ${content}`);
     }
   }
 
-  // 1a. Apex and www
   await upsertDnsRecord("A", "@", VERCEL_APEX_IP, false);
   await upsertDnsRecord("CNAME", "www", "cname.vercel-dns.com", false);
 
-  // 1b. All 27 venture subdomains
   for (const v of VENTURE_DOMAIN_MAP) {
     await upsertDnsRecord("CNAME", v.subdomain, v.cname, false);
   }
 
-  // 2. Email Routing rules
-  console.log(`\n=== 2. Configuring Cloudflare Email Routing on ${ZONE_NAME} ===`);
-  const existingRules = await cfRequest("GET", `/zones/${zoneId}/email/routing/rules?per_page=100`);
-
-  for (const route of EMAIL_ROUTES) {
-    const rulePayload = {
-      name: route.name,
-      enabled: true,
-      matchers: [{ type: "literal", field: "to", value: route.address }],
-      actions: [{ type: "forward", value: [route.destination] }]
-    };
-    const match = existingRules.find((r) =>
-      (r.matchers || []).some((m) => m.field === "to" && m.value === route.address)
-    );
-    if (match) {
-      await cfRequest("PUT", `/zones/${zoneId}/email/routing/rules/${match.tag || match.id}`, rulePayload);
-      console.log(`  [UPDATED EMAIL] ${route.address.padEnd(36)} -> ${route.destination}`);
-    } else {
-      await cfRequest("POST", `/zones/${zoneId}/email/routing/rules`, rulePayload);
-      console.log(`  [CREATED EMAIL] ${route.address.padEnd(36)} -> ${route.destination}`);
+  log(`\n=== 2. Configuring Cloudflare Email Routing on ${ZONE_NAME} ===`);
+  try {
+    const existingRules = await cfRequest("GET", `/zones/${zoneId}/email/routing/rules?per_page=100`);
+    for (const route of EMAIL_ROUTES) {
+      const rulePayload = {
+        name: route.name,
+        enabled: true,
+        matchers: [{ type: "literal", field: "to", value: route.address }],
+        actions: [{ type: "forward", value: [route.destination] }]
+      };
+      const match = existingRules.find((r) =>
+        (r.matchers || []).some((m) => m.field === "to" && m.value === route.address)
+      );
+      if (match) {
+        await cfRequest("PUT", `/zones/${zoneId}/email/routing/rules/${match.tag || match.id}`, rulePayload);
+        log(`  [UPDATED EMAIL] ${route.address.padEnd(36)} -> ${route.destination}`);
+      } else {
+        await cfRequest("POST", `/zones/${zoneId}/email/routing/rules`, rulePayload);
+        log(`  [CREATED EMAIL] ${route.address.padEnd(36)} -> ${route.destination}`);
+      }
     }
+  } catch (err) {
+    warn(`  [!] Email routing note: ${err.message}`);
   }
 }
 
-async function vercelRequest(method, path, body) {
-  const res = await fetch(`https://api.vercel.com${path}`, {
+async function vercelRequest(method, apiPath, body) {
+  const res = await fetch(`https://api.vercel.com${apiPath}`, {
     method,
     headers: {
       Authorization: `Bearer ${vercelToken}`,
@@ -163,63 +220,112 @@ async function vercelRequest(method, path, body) {
 
 async function configureVercel() {
   if (!vercelToken) {
-    console.log("\n[SKIP] VERCEL_TOKEN not set in environment.");
+    log("\n[SKIP] Vercel credentials not provided or discovered.");
     return;
   }
-  console.log(`\n=== 3. Configuring Vercel Custom Domains & Subdomains ===`);
-  const { data } = await vercelRequest("GET", "/v9/projects?limit=100");
-  const projects = data.projects || [];
-  console.log(`[+] Found ${projects.length} Vercel projects.`);
+  log(`\n=== 3. Configuring Vercel Custom Domains & Subdomains ===`);
+
+  const allProjects = [];
+  const seenIds = new Set();
+
+  // 1. Personal/default scope projects
+  const personalRes = await vercelRequest("GET", "/v9/projects?limit=100");
+  if (personalRes.status === 401 || personalRes.status === 403) {
+    throw new Error(`Vercel authentication failed (HTTP ${personalRes.status}): ${JSON.stringify(personalRes.data)}`);
+  }
+  for (const p of personalRes.data.projects || []) {
+    if (!seenIds.has(p.id)) {
+      seenIds.add(p.id);
+      allProjects.push({ ...p, _teamId: null });
+    }
+  }
+
+  // 2. Team-scoped projects
+  const teamsRes = await vercelRequest("GET", "/v2/teams?limit=100");
+  for (const team of teamsRes.data.teams || []) {
+    const teamProjRes = await vercelRequest("GET", `/v9/projects?limit=100&teamId=${encodeURIComponent(team.id)}`);
+    for (const p of teamProjRes.data.projects || []) {
+      if (!seenIds.has(p.id)) {
+        seenIds.add(p.id);
+        allProjects.push({ ...p, _teamId: team.id });
+      }
+    }
+  }
+
+  log(`[+] Found ${allProjects.length} total Vercel projects across account/teams.`);
 
   function findProject(repoName) {
     const lower = repoName.toLowerCase();
-    return projects.find(
+    return allProjects.find(
       (p) =>
         p.name.toLowerCase() === lower ||
         (p.link && p.link.repo && p.link.repo.toLowerCase() === lower)
     );
   }
 
-  // Attach summithillholdings.com and www.summithillholdings.com to the holding company project
+  async function addDomainToProject(proj, domainPayload) {
+    const qs = proj._teamId ? `?teamId=${encodeURIComponent(proj._teamId)}` : "";
+    return vercelRequest("POST", `/v10/projects/${proj.id}/domains${qs}`, domainPayload);
+  }
+
   const holdingProj = findProject("summithillholdings") || findProject("josephjilovec");
   if (holdingProj) {
-    const res1 = await vercelRequest("POST", `/v10/projects/${holdingProj.id}/domains`, {
-      name: ZONE_NAME
-    });
-    console.log(`  [HOLDING APEX] ${ZONE_NAME} -> project '${holdingProj.name}' (HTTP ${res1.status})`);
+    const res1 = await addDomainToProject(holdingProj, { name: ZONE_NAME });
+    log(`  [HOLDING APEX] ${ZONE_NAME} -> project '${holdingProj.name}' (HTTP ${res1.status})`);
 
-    const res2 = await vercelRequest("POST", `/v10/projects/${holdingProj.id}/domains`, {
+    const res2 = await addDomainToProject(holdingProj, {
       name: `www.${ZONE_NAME}`,
       redirect: ZONE_NAME,
       redirectStatusCode: 308
     });
-    console.log(`  [HOLDING WWW]  www.${ZONE_NAME} -> project '${holdingProj.name}' (HTTP ${res2.status})`);
+    log(`  [HOLDING WWW]  www.${ZONE_NAME} -> project '${holdingProj.name}' (HTTP ${res2.status})`);
   } else {
-    console.warn("  [!] Could not locate holding company Vercel project ('summithillholdings' or 'josephjilovec').");
+    warn("  [!] Could not locate holding company Vercel project ('summithillholdings' or 'josephjilovec').");
   }
 
-  // Attach all 27 venture subdomains
   for (const v of VENTURE_DOMAIN_MAP) {
     const fqdn = `${v.subdomain}.${ZONE_NAME}`;
     const proj = findProject(v.repo) || findProject(v.subdomain);
     if (!proj) {
-      console.warn(`  [!] No matching Vercel project found for repo '${v.repo}' (${fqdn})`);
+      warn(`  [!] No matching Vercel project found for repo '${v.repo}' (${fqdn})`);
       continue;
     }
-    const res = await vercelRequest("POST", `/v10/projects/${proj.id}/domains`, {
-      name: fqdn
-    });
-    console.log(`  [VENTURE DOMAIN] ${fqdn.padEnd(44)} -> project '${proj.name.padEnd(24)}' (HTTP ${res.status})`);
+    const res = await addDomainToProject(proj, { name: fqdn });
+    log(`  [VENTURE DOMAIN] ${fqdn.padEnd(44)} -> project '${proj.name.padEnd(24)}' (HTTP ${res.status})`);
+  }
+}
+
+function flushLog() {
+  const logPaths = [
+    path.join(process.cwd(), "summithill-cutover-log.txt"),
+    "C:\\Users\\realj\\Desktop\\summithill-cutover-log.txt",
+    "C:\\Users\\realj\\OneDrive\\Desktop\\summithill-cutover-log.txt"
+  ];
+  for (const lp of logPaths) {
+    try {
+      fs.writeFileSync(lp, LOG_LINES.join("\n") + "\n", "utf8");
+    } catch {}
   }
 }
 
 async function main() {
-  await configureCloudflare();
-  await configureVercel();
-  console.log("\n[+] Cutover script execution complete.");
+  log("=== Summit Hill Holdings Cutover Automation Started ===");
+  try {
+    await configureCloudflare();
+  } catch (err) {
+    warn(`Cloudflare step error: ${err.message || err}`);
+  }
+  try {
+    await configureVercel();
+  } catch (err) {
+    warn(`Vercel step error: ${err.message || err}`);
+  }
+  log("\n[+] Cutover script execution complete.");
+  flushLog();
 }
 
 main().catch((err) => {
-  console.error("\n[ERROR]", err.message || err);
+  warn(`[FATAL] ${err.message || err}`);
+  flushLog();
   process.exit(1);
 });
