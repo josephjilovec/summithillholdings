@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { site } from "@/lib/site";
 
 const interestOptions = ["Operating leader", "Investor / capital partner", "Technical collaborator", "Distribution / domain partner", "Civic / nonprofit collaboration", "Strategic adviser", "Media", "Creative collaboration", "Music / licensing", "General inquiry"];
 
@@ -10,6 +11,7 @@ export function ContactForm({ mode = "contact", initialInterest = "" }: { mode?:
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (state === "sending") return;
     setState("sending");
     setMessage("");
     const form = event.currentTarget;
@@ -32,7 +34,8 @@ export function ContactForm({ mode = "contact", initialInterest = "" }: { mode?:
   }
 
   return (
-    <form className="contact-form" onSubmit={submit}>
+    <form className="contact-form" method="post" onSubmit={submit} aria-busy={state === "sending"}>
+      <noscript><p>Enable JavaScript to use this form, or email <a href={`mailto:${site.emails.contact}`}>{site.emails.contact}</a>.</p></noscript>
       {mode === "contact" ? (
         <>
           <div className="form-row">

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ventures } from "@/lib/portfolio";
 
+const disciplineCount = new Set(ventures.map(venture => venture.category)).size;
+
 const heroCarousel = [
   "https://images.pexels.com/photos/19999185/pexels-photo-19999185.jpeg?cs=srgb&dl=pexels-midlox-19999185.jpg&fm=jpg",
   "https://images.pexels.com/photos/5531042/pexels-photo-5531042.jpeg?cs=srgb&dl=pexels-rachel-claire-5531042.jpg&fm=jpg",
@@ -64,8 +66,8 @@ export function FounderHero() {
           </div>
           <div className="hero-signals" aria-label="Portfolio overview">
             <div><strong>{ventures.length}</strong><span>portfolio assets</span></div>
-            <div><strong>100%</strong><span>decentralized ecosystem</span></div>
-            <div><strong>01→04</strong><span>identify · design · test · build</span></div>
+            <div><strong>{disciplineCount}</strong><span>working disciplines</span></div>
+            <div><strong>4</strong><span>development stages</span></div>
           </div>
         </div>
       </section>

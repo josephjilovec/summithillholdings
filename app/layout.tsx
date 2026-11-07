@@ -6,6 +6,7 @@ import "./venture-studio-theme.css";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
 import { SiteFooter } from "@/components/navigation/SiteFooter";
 import { site } from "@/lib/site";
+import chrome from "@/components/navigation/SiteChrome.module.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -49,7 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
 
   return (
     <html lang="en">
-      <body>
+      <body className={chrome.siteBody}>
         <a className="skip-link" href="#main">Skip to content</a>
         <SiteHeader />
         <main id="main">{children}</main>

@@ -1,35 +1,32 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import styles from "./SiteChrome.module.css";
 
 export function SiteFooter() {
   return (
-    <footer className="site-footer">
-      <div className="footer-grid">
-        <div className="footer-identity">
-          <div className="brand-mark footer-brand">
-            <span className="brand-monogram">SH</span>
-            <span className="brand-copy"><strong>Summit Hill Holdings</strong><small>Holdings</small></span>
+    <footer id="site-footer" className={styles.footer} aria-label="Site footer">
+      <div className={`${styles.inner} ${styles.footerInner}`}>
+        <div className={styles.footerMain}>
+          <div>
+            <Link href="/" className={styles.brand} aria-label="Summit Hill Holdings home">
+              <span className={styles.monogram} aria-hidden="true">SH</span>
+              <strong className={styles.brandName}>Summit Hill Holdings</strong>
+            </Link>
+            <p className={styles.description}>Venture development, portfolio strategy, and operator partnerships across commerce, civic initiatives, behavioral design, technology, and creative work.</p>
           </div>
-          <p className="footer-note">Venture development, portfolio strategy, and operator partnerships across commerce, civic initiatives, behavioral design, technology, and creative work.</p>
-        </div>
-        <div className="footer-connect">
-          <span className="footer-label">Connect</span>
-          <div className="footer-connect-links">
-            <Link href="/contact">Contact</Link>
-            <Link href={site.booking}>Discuss a venture ↗</Link>
-            <a href="mailto:contact@summithillholdings.com">contact@summithillholdings.com</a>
-            <a href="mailto:hello@summithillholdings.com">hello@summithillholdings.com</a>
-            <a href="mailto:support@summithillholdings.com">support@summithillholdings.com</a>
+          <div className={styles.footerContact}>
+            <a className={styles.email} href={`mailto:${site.emails.contact}`}><span>{site.emails.contact}</span><span aria-hidden="true">↗</span></a>
+            <p className={styles.location}>{site.location}</p>
           </div>
         </div>
-      </div>
-      <div className="footer-bottom">
-        <span>© 2026 Summit Hill Holdings. All rights reserved.</span>
-        <span className="footer-legal-links">
-          <Link href="/terms">Terms of Service</Link>
-          <Link href="/privacy">Privacy Policy</Link>
-        </span>
-        <span>Concept stages and plans may change. No investment solicitation or financial advice.</span>
+        <div className={styles.footerBottom}>
+          <p className={styles.copyright}>© {new Date().getFullYear()} Summit Hill Holdings. All rights reserved.</p>
+          <nav className={styles.legalNav} aria-label="Legal">
+            <Link href="/terms">Terms of Service</Link>
+            <Link href="/privacy">Privacy Policy</Link>
+          </nav>
+        </div>
+        <p className={styles.notice}>Concept stages and plans may change. No investment solicitation or financial advice.</p>
       </div>
     </footer>
   );
