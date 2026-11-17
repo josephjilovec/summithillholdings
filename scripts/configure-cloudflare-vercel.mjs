@@ -66,7 +66,10 @@ const VENTURE_DOMAIN_MAP = [
 
 const CRED_PATHS = [
   "C:\\Users\\realj\\.summithill-credentials.json",
+  "C:\\Users\\realj\\OneDrive\\Desktop\\API_Keys\\summithill-credentials.json",
   "/mnt/c/Users/realj/.summithill-credentials.json",
+  "/mnt/c/Users/realj/OneDrive/Desktop/API_Keys/summithill-credentials.json",
+  "/home/realj/.summithill-credentials.json",
   path.join(os.homedir(), ".summithill-credentials.json")
 ];
 
@@ -74,7 +77,10 @@ function readSavedCredentials() {
   for (const cp of CRED_PATHS) {
     try {
       if (fs.existsSync(cp)) {
-        return JSON.parse(fs.readFileSync(cp, "utf8")) || {};
+        const parsed = JSON.parse(fs.readFileSync(cp, "utf8"));
+        if (parsed && (parsed.cloudflareToken || parsed.vercelToken)) {
+          return parsed;
+        }
       }
     } catch {}
   }
@@ -82,10 +88,17 @@ function readSavedCredentials() {
 }
 
 function saveCredentials(updates) {
-  const current = { ...readSavedCredentials(), ...updates };
+  const existing = readSavedCredentials();
+  const merged = {
+    ...existing,
+    ...(updates.cloudflareToken ? { cloudflareToken: updates.cloudflareToken } : {}),
+    ...(updates.vercelToken ? { vercelToken: updates.vercelToken } : {}),
+    updatedAt: new Date().toISOString(),
+    expiresAt: "2027-11-06T00:00:00.000Z"
+  };
   for (const cp of CRED_PATHS) {
     try {
-      fs.writeFileSync(cp, JSON.stringify(current, null, 2), "utf8");
+      fs.writeFileSync(cp, JSON.stringify(merged, null, 2), "utf8");
     } catch {}
   }
 }
@@ -150,7 +163,15 @@ const defaultInbox = (process.env.CF_EMAIL_DESTINATION || "realjjemail@gmail.com
 const EMAIL_ROUTES = [
   { address: `contact@${ZONE_NAME}`, destination: process.env.CF_EMAIL_DEST_CONTACT || defaultInbox, name: "Summit Hill Executive & Capital Contact" },
   { address: `hello@${ZONE_NAME}`, destination: process.env.CF_EMAIL_DEST_HELLO || defaultInbox, name: "Summit Hill General & Venture Hello" },
-  { address: `support@${ZONE_NAME}`, destination: process.env.CF_EMAIL_DEST_SUPPORT || defaultInbox, name: "Summit Hill Portfolio & Client Support" }
+  { address: `support@${ZONE_NAME}`, destination: process.env.CF_EMAIL_DEST_SUPPORT || defaultInbox, name: "Summit Hill Portfolio & Client Support" },
+  { address: `givewise@${ZONE_NAME}`, destination: defaultInbox, name: "GiveWise Insights Short Alias" },
+  { address: `autocomp@${ZONE_NAME}`, destination: defaultInbox, name: "AutoComp Corp Short Alias" },
+  { address: `qship@${ZONE_NAME}`, destination: defaultInbox, name: "QShip Supply Co. Short Alias" },
+  ...VENTURE_DOMAIN_MAP.map((v) => ({
+    address: `${v.subdomain}@${ZONE_NAME}`,
+    destination: defaultInbox,
+    name: `${v.repo} Venture Email Route`
+  }))
 ];
 
 function cfHeaders() {
