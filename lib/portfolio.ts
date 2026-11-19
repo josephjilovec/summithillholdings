@@ -46,7 +46,8 @@ const lifecycleBySlug: Record<string, VentureLifecycle> = {
   "solvanti": "DESIGN",
   "techwater": "DESIGN",
   "motoryn": "DESIGN",
-  "experience-elsewhere": "DESIGN"
+  "experience-elsewhere": "DESIGN",
+  "true-peak-roofing": "DESIGN"
 };
 
 const tierBySlug: Record<string, VentureTier> = {
@@ -77,7 +78,8 @@ const tierBySlug: Record<string, VentureTier> = {
   "solvanti": "Incubation Concepts",
   "techwater": "Incubation Concepts",
   "motoryn": "Incubation Concepts",
-  "experience-elsewhere": "Incubation Concepts"
+  "experience-elsewhere": "Incubation Concepts",
+  "true-peak-roofing": "Incubation Concepts"
 };
 
 const businessStatusBySlug: Record<string, BusinessStatus> = {
@@ -115,7 +117,8 @@ const businessStatusBySlug: Record<string, BusinessStatus> = {
   "solvanti": "Concept",
   "techwater": "Concept",
   "motoryn": "Concept",
-  "experience-elsewhere": "Concept"
+  "experience-elsewhere": "Concept",
+  "true-peak-roofing": "In Development"
 };
 
 const payerDelta: PortfolioVenture = {
@@ -569,8 +572,31 @@ const kinora: PortfolioVenture = {
   tags: ["technology", "ai", "matching", "community", "founder-teams", "privacy"]
 };
 
+const truePeakRoofing: PortfolioVenture = {
+  slug: "true-peak-roofing",
+  name: "True Peak Roofing",
+  eyebrow: "Phoenix residential roofing",
+  category: "Industrial",
+  stage: "Prelaunch",
+  status: "In Development",
+  summary: "A Phoenix homeowner’s field guide to tile, shingle and low-slope roofs, and a residential roofing venture in development. Not a Licensed Contractor.",
+  problem: "A homeowner can receive two proposals for the same roof and still have no clear way to compare underlayment, flashing, hidden deck repairs or warranty responsibility.",
+  thesis: "A written scope and a record of changes give the homeowner and field crew a shared account of what was authorized and what was delivered.",
+  currentState: "The public guide includes illustrated material studies, questions for comparing estimates and a printable visit worksheet. General inquiries are open. Roofing services are in development.",
+  founderRole: "Guide development, operating design and qualification of potential operating partners.",
+  nextMilestone: "Confirm the contracting entity, qualifying party and applicable Arizona credentials before opening project intake.",
+  opportunity: "Arizona roofing professionals and suppliers with residential field experience can contact Summit Hill Holdings about future collaboration.",
+  externalUrl: "https://summithillholdings.com/roofing",
+  externalLabel: "Open the homeowner guide",
+  art: "/roofing/assets/clay-tile-small.webp",
+  heroArt: "/roofing/assets/desert-roofline-wide.webp",
+  accent: "#E0A171",
+  accentSoft: "rgba(224,161,113,.17)",
+  tags: ["residential roofing", "Phoenix", "tile", "homeowner education"]
+};
+
 export const ventures = parsePortfolioVentureList(
-  [...rawPortfolioVentures, payerDelta, givewiseInsights, adVibeCentral, kineticAromatics, atlasAssets, autoCompCorp, crestlineMetals, ameliora, eversteadLiving, qshipSupplyCo, solvanti, techwater, motoryn, experienceElsewhere, kinora].map((venture) => {
+  [...rawPortfolioVentures, payerDelta, givewiseInsights, adVibeCentral, kineticAromatics, atlasAssets, autoCompCorp, crestlineMetals, ameliora, eversteadLiving, qshipSupplyCo, solvanti, techwater, motoryn, experienceElsewhere, kinora, truePeakRoofing].map((venture) => {
     const lifecycle = lifecycleBySlug[venture.slug] ?? "IDENTIFY";
     return {
       ...venture,

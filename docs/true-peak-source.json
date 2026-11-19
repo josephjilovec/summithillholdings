@@ -1,0 +1,26 @@
+{
+  "repository": "josephjilovec/truepeakroofing",
+  "commit": "747cd37e9bf5bb9f4386f50d65c5de868bcd9995",
+  "files": [
+    "assets/OFL-Barlow-Condensed.txt",
+    "assets/asphalt-shingle-medium.webp",
+    "assets/asphalt-shingle-small.webp",
+    "assets/asphalt-shingle.webp",
+    "assets/barlow-condensed-bold.woff2",
+    "assets/clay-tile-medium.webp",
+    "assets/clay-tile-small.webp",
+    "assets/clay-tile.webp",
+    "assets/desert-roofline-small.webp",
+    "assets/desert-roofline-wide.webp",
+    "assets/low-slope-medium.webp",
+    "assets/low-slope-small.webp",
+    "assets/low-slope.webp",
+    "assets/mark.svg",
+    "guide.js",
+    "index.html",
+    "privacy.html",
+    "roof-visit-notes.txt",
+    "style.css",
+    "terms.html"
+  ]
+}

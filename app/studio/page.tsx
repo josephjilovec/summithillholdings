@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { ventures } from "@/lib/portfolio";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata("Studio Model", "How Summit Hill Holdings sets portfolio direction, builds foundational architecture, aligns capital, and assembles operating leadership around selected ventures.", "/studio");
@@ -38,7 +39,7 @@ export default function StudioPage() {
 
       <section className="section studio-infrastructure-section">
         <SectionHeading index="02" eyebrow="Shared infrastructure" title="Build once. Apply across the portfolio." />
-        <p className="studio-section-lede">The portfolio’s 26 ventures include brands, services, and concepts at different stages of development, while a shared infrastructure layer reduces repeated work and gives operators greater leverage.</p>
+        <p className="studio-section-lede">The portfolio’s {ventures.length} ventures include brands, services, and concepts at different stages of development, while a shared infrastructure layer reduces repeated work and gives operators greater leverage.</p>
         <div className="studio-infrastructure-grid">
           <article><span>AI automation</span><h3>Connected workflows</h3><p>Reusable AI-assisted research, content, analysis, routing, and operational systems give venture teams a stronger starting point.</p></article>
           <article><span>Brand frameworks</span><h3>Distinct identities, shared discipline</h3><p>Each venture receives its own market language and visual world while drawing from a common standard for positioning, trust, and conversion.</p></article>

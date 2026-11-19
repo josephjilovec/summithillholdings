@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [{ source: "/roofing", destination: "/roofing/index.html" }];
+  },
   async redirects() {
     return [
       { source: "/ventures/:slug/capital", destination: "/contact?venture=:slug", permanent: false },
