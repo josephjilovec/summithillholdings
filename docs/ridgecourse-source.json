@@ -1,6 +1,6 @@
 {
-  "repository": "josephjilovec/truepeakroofing",
-  "commit": "747cd37e9bf5bb9f4386f50d65c5de868bcd9995",
+  "repository": "josephjilovec/ridgecourseroofing",
+  "commit": "f5610911d858e6c30aa5cbb2ee7e9b77b318a51e",
   "files": [
     "assets/OFL-Barlow-Condensed.txt",
     "assets/asphalt-shingle-medium.webp",
@@ -12,10 +12,14 @@
     "assets/clay-tile.webp",
     "assets/desert-roofline-small.webp",
     "assets/desert-roofline-wide.webp",
+    "assets/flashing-underlayment.jpg",
+    "assets/hero-sonoran-ridge.jpg",
     "assets/low-slope-medium.webp",
     "assets/low-slope-small.webp",
     "assets/low-slope.webp",
     "assets/mark.svg",
+    "assets/monsoon-roofline-bg.jpg",
+    "assets/roofing-field-kit.jpg",
     "guide.js",
     "index.html",
     "privacy.html",

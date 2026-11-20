@@ -21,10 +21,12 @@ const nextConfig: NextConfig = {
       { source: "/portfolio/:slug/capital", destination: "/contact?venture=:slug", permanent: false },
       { source: "/portfolio/ferrix-corp/capital", destination: "/contact?venture=crestline-metals", permanent: false },
       { source: "/portfolio/payer-delta-az/capital", destination: "/contact?venture=payer-delta", permanent: false },
+      { source: "/portfolio/true-peak-roofing/capital", destination: "/contact?venture=ridgecourse-roofing", permanent: false },
       { source: "/ventures", destination: "/portfolio", permanent: true },
       { source: "/ventures/:path*", destination: "/portfolio/:path*", permanent: true },
       { source: "/portfolio/ferrix-corp", destination: "/portfolio/crestline-metals", permanent: true },
       { source: "/portfolio/payer-delta-az", destination: "/portfolio/payer-delta", permanent: true },
+      { source: "/portfolio/true-peak-roofing", destination: "/portfolio/ridgecourse-roofing", permanent: true },
     ];
   },
   async headers() {

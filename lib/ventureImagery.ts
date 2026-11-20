@@ -8,10 +8,10 @@ export type VentureImage = {
 // The existing venture.accent and venture.accentSoft values remain the source of
 // truth for hover glow, interface tinting, Project Files, and Capital Files.
 export const ventureImagery: Record<string, VentureImage> = {
-  "true-peak-roofing": {
-    src: "/roofing/assets/desert-roofline-wide.webp",
-    alt: "Illustrated Sonoran Desert roofscape with a terracotta tile hip and distant mountains",
-    position: "center 56%",
+  "ridgecourse-roofing": {
+    src: "/roofing/assets/hero-sonoran-ridge.jpg",
+    alt: "Illustrated golden-hour Sonoran Desert terracotta tile roofline facing the Superstition Mountains",
+    position: "center 52%",
   },
   kinora: {
     src: "/project-art/kinora.svg",

@@ -1,5 +1,5 @@
 const brands: Record<string, string> = {
-  "true-peak-roofing": "True Peak Roofing",
+  "ridgecourse-roofing": "Ridgecourse Roofing",
   "my-healthy-aura": "My Healthy Aura", "swift-deal-solutions": "Swift Deal Solutions",
   "dj-hotwax": "DJ Hotwax", "vanta-helix": "Vanta Helix", "cannacore-seeds": "CannaCore Seeds",
   snarklogic: "Snark Logic", "alder-and-meridian": "Alder & Meridian", jentlemens: "Jentlemens",
