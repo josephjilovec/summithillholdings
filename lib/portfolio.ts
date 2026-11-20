@@ -575,24 +575,24 @@ const kinora: PortfolioVenture = {
 const ridgecourseRoofing: PortfolioVenture = {
   slug: "ridgecourse-roofing",
   name: "Ridgecourse Roofing",
-  eyebrow: "Phoenix residential roofing",
+  eyebrow: "National B2B roofing & restoration ops",
   category: "Industrial",
   stage: "Prelaunch",
   status: "In Development",
-  summary: "A Phoenix & East Valley residential roofing venture in pre-launch, featuring an architectural roof field manual and 12-point written proposal scope auditor. Not a Licensed Contractor.",
-  problem: "A Phoenix homeowner can receive two written roofing proposals $6,000 apart and still have no clear way to compare underlayment heat ratings, W-valley flashing metal, hidden wood decking per-sheet rates, permits, or lien waivers.",
-  thesis: "Line-item written scopes, upfront decking unit pricing, and 4-stage timestamped photo audits give homeowners and field crews an objective, verifiable record of every hidden layer installed beneath the tile.",
-  currentState: "Brand name cleared as Ridgecourse Roofing. The public field manual includes four architectural system studies, a 6-layer roof anatomy guide, an interactive 12-point Bid A vs. Bid B scope auditor, and a printable visit worksheet. General and Qualifying Party / partner inquiries are open; contracting awaits active AZ ROC R-42/CR-42 licensure.",
-  founderRole: "Brand architecture, operating & estimating playbook design, software workflow setup, and engagement of an Arizona ROC Qualifying Party and licensed installation partners.",
-  nextMilestone: "Complete standalone contracting LLC formation, Qualifying Party agreement, AZ ROC R-42/CR-42 license issuance, surety bonding, and $1M/$2M CGL/Workers’ Comp binding prior to live homeowner intake.",
-  opportunity: "Experienced Arizona roofing superintendents, R-42/CR-42 Qualifying Parties, and East Valley trade suppliers interested in building a documentation-first operator can contact Summit Hill Holdings.",
+  summary: "National B2B roofing and restoration back-office operations, job-file QA, photo/evidence indexing, and billing-support documentation on fixed fees. Not a Licensed Roofing Contractor & Not a Public Adjuster.",
+  problem: "Licensed roofing contractors, water-mitigation firms, and restoration crews already generate leads through ads and field reps, yet lose weeks of cash flow to unindexed crew photos, incomplete daily moisture logs, mismatched supplier invoices, and stalled permit/COI/lien-waiver closeouts.",
+  thesis: "Remote, fixed-fee back-office QA—4-stage photo indexing, estimate-to-invoice reconciliation, moisture-log audits, closeout dossiers, and public NOAA/NWS storm-swath logs—clears post-sale billing bottlenecks nationwide without adding fixed office payroll or claim-percentage fees.",
+  currentState: "Active Phase 1 B2B website and interactive 12-point Job-File & Scope Completeness Auditor are live at ridgecourseroofing.summithillholdings.com and /roofing. Strictly fixed per-file, per-batch, or fixed monthly ops capacity; the licensed Arizona residential contractor track is archived privately for potential Phase 2 activation.",
+  founderRole: "B2B back-office workflow architecture, 12-point file-audit standards, fixed-fee scoping, legal-boundary governance, and national contractor onboarding.",
+  nextMilestone: "Complete formal Arizona and multi-state UPPA counsel review of B2B SOWs and deliver initial fixed-fee job-file QA pilots for licensed roofing and water-mitigation operators.",
+  opportunity: "Licensed roofing contractors, water-mitigation companies, fire/contents pack-out restorers, and multi-site commercial/HOA storm vendors seeking fixed-fee remote file-audit capacity can inquire through Summit Hill Holdings.",
   externalUrl: "https://ridgecourseroofing.summithillholdings.com",
-  externalLabel: "Open the field manual",
+  externalLabel: "Open B2B file-audit site",
   art: "/roofing/assets/flashing-underlayment.jpg",
   heroArt: "/roofing/assets/hero-sonoran-ridge.jpg",
   accent: "#E0A171",
   accentSoft: "rgba(224,161,113,.17)",
-  tags: ["residential roofing", "Phoenix", "East Valley", "tile underlayment", "proposal auditor"]
+  tags: ["B2B roofing ops", "job-file QA", "photo indexing", "restoration billing support", "fixed-fee"]
 };
 
 export const ventures = parsePortfolioVentureList(

@@ -26,9 +26,9 @@ Business plans, domain-migration records, internal ownership records, and dilige
 
 Organization metadata, branded contact routes, and portfolio artwork use Summit Hill Holdings. Public portfolio inclusion does not establish legal ownership, nonprofit status, or a transfer of assets. Legal entity and trade-name disclosures remain accurate and separate from the portfolio brand.
 
-## Ridgecourse Roofing homeowner field manual
+## Ridgecourse Roofing B2B file-audit site
 
-The portfolio detail links to the standalone Phoenix homeowner field manual and 12-point proposal scope auditor at `/roofing` on the studio domain. The checked-in public files work without a build-time download or separate DNS configuration. Edit the source in [ridgecourseroofing](https://github.com/josephjilovec/ridgecourseroofing). After committing the source, refresh the mounted copy from this checkout with the command below. Review the resulting diff and run the existing website checks. The source commit and file list are recorded in `docs/ridgecourse-source.json`.
+The portfolio detail links to the standalone Ridgecourse Roofing B2B operations and 12-point job-file completeness auditor at [ridgecourseroofing.summithillholdings.com](https://ridgecourseroofing.summithillholdings.com) and mounted at `/roofing` on the studio domain. Edit the source in [ridgecourseroofing](https://github.com/josephjilovec/ridgecourseroofing). After committing the source, refresh the mounted copy from this checkout with the command below. Review the resulting diff and run the existing website checks. The source commit and file list are recorded in `docs/ridgecourse-source.json`.
 
 ```sh
 node scripts/sync-ridgecourse.mjs /path/to/ridgecourseroofing FULL_SOURCE_COMMIT_SHA

@@ -11,30 +11,30 @@ const resetAuditBtn = document.getElementById("reset-audit");
 
 const TOTAL_AUDIT_ITEMS = 12;
 
-const CORE_QUESTIONS = [
-  "Is an active AZ ROC R-42 or CR-42 license # printed and verified on roc.az.gov?",
-  "Which areas, layers, underlayment brand/plies, removal, and disposal are included?",
-  "Are new W-valley metal, drip edge, wall flashings, and new pipe boots included?",
-  "What is the upfront $/sheet OSB decking rate and photo-backed Change Order rule?",
-  "Who pulls municipal permits, schedules inspections, and provides lien waivers?"
+const CORE_CHECKS = [
+  "Confirm signed customer scope with active contractor license # on file before billing.",
+  "Verify 4-stage timestamped photo sequence (Pre-Work, Bare Deck, Dry-In/Flashing, Final).",
+  "Reconcile supplier material drop tickets and sub labor draws to scope quantities.",
+  "Confirm daily moisture/psychrometric logs and equipment day counts have zero skipped dates.",
+  "Collect permit sign-off, unexpired vendor W-9/COIs, and statutory lien waivers prior to closeout."
 ];
 
 function getAuditState() {
-  const bidABoxes = Array.from(document.querySelectorAll('input[name="bidA"]'));
-  const bidBBoxes = Array.from(document.querySelectorAll('input[name="bidB"]'));
-  const aChecked = bidABoxes.filter(el => el.checked).map(el => el.value);
-  const aMissing = bidABoxes.filter(el => !el.checked).map(el => el.value);
-  const bChecked = bidBBoxes.filter(el => el.checked).map(el => el.value);
-  const bMissing = bidBBoxes.filter(el => !el.checked).map(el => el.value);
+  const fileABoxes = Array.from(document.querySelectorAll('input[name="fileA"]'));
+  const fileBBoxes = Array.from(document.querySelectorAll('input[name="fileB"]'));
+  const aChecked = fileABoxes.filter(el => el.checked).map(el => el.value);
+  const aMissing = fileABoxes.filter(el => !el.checked).map(el => el.value);
+  const bChecked = fileBBoxes.filter(el => el.checked).map(el => el.value);
+  const bMissing = fileBBoxes.filter(el => !el.checked).map(el => el.value);
   return { aChecked, aMissing, bChecked, bMissing };
 }
 
 function labelForScore(count) {
-  if (count === 0) return "Check items present in writing";
-  if (count <= 5) return "High omission risk — ask for written scope revision";
-  if (count <= 9) return "Partial scope — clarify missing line items first";
-  if (count < TOTAL_AUDIT_ITEMS) return "Strong scope — verify remaining items";
-  return "Complete 12-point written scope";
+  if (count === 0) return "Check items present in job file";
+  if (count <= 5) return "High billing-delay risk — major documentation gaps";
+  if (count <= 9) return "Incomplete file — resolve flagged exceptions before invoicing";
+  if (count < TOTAL_AUDIT_ITEMS) return "Nearly closeout-ready — verify remaining items";
+  return "Complete 12-point closeout & billing dossier";
 }
 
 function updateAuditUI() {
@@ -50,7 +50,7 @@ function updateAuditUI() {
 
   if (!anyChecked) {
     auditSummaryEl.textContent =
-      "Check items above to spot missing scope lines on Bid A or Bid B. Your comparison automatically attaches to your printable/downloadable notes below.";
+      "Check items present in File A or File B to surface missing documentation gaps. Your exception summary automatically attaches to the downloadable checklist below.";
     return;
   }
 
@@ -59,86 +59,86 @@ function updateAuditUI() {
     const gapA = aMissing.slice(0, 3).join("; ");
     lines.push(
       aMissing.length === 0
-        ? "Bid A covers all 12 critical scope items in writing."
-        : `Bid A is missing ${aMissing.length} item(s) — ask in writing about: ${gapA}${aMissing.length > 3 ? ", …" : ""}.`
+        ? "Job File A meets all 12 closeout and billing documentation checkpoints."
+        : `Job File A is missing ${aMissing.length} item(s) — PM review needed for: ${gapA}${aMissing.length > 3 ? ", …" : ""}.`
     );
   }
   if (bChecked.length > 0) {
     const gapB = bMissing.slice(0, 3).join("; ");
     lines.push(
       bMissing.length === 0
-        ? "Bid B covers all 12 critical scope items in writing."
-        : `Bid B is missing ${bMissing.length} item(s) — ask in writing about: ${gapB}${bMissing.length > 3 ? ", …" : ""}.`
+        ? "Job File B meets all 12 closeout and billing documentation checkpoints."
+        : `Job File B is missing ${bMissing.length} item(s) — PM review needed for: ${gapB}${bMissing.length > 3 ? ", …" : ""}.`
     );
   }
   auditSummaryEl.textContent = lines.join(" ");
 }
 
-function visitNotesText() {
+function buildPrepChecklistText() {
   const data = new FormData(form);
-  const observations = data.getAll("observation");
+  const bottlenecks = data.getAll("bottleneck");
   const { aChecked, aMissing, bChecked, bMissing } = getAuditState();
 
   const out = [
-    "RIDGECOURSE ROOFING | PHOENIX HOMEOWNER VISIT NOTES & SCOPE AUDIT",
-    "Pre-Launch Field Manual · Summit Hill Holdings (Not a Licensed Contractor)",
-    "========================================================================",
+    "RIDGECOURSE ROOFING | B2B JOB-FILE AUDIT & PREP CHECKLIST",
+    "Not a Licensed Roofing Contractor & Not a Public Adjuster · Fixed-Fee B2B Support (US)",
+    "======================================================================================",
     "",
-    "1. HOMEOWNER OBSERVATIONS",
-    "Roof material:      " + data.get("material"),
-    "Approximate age:    " + data.get("age"),
-    "Observations:       " + (observations.length ? observations.join(" | ") : "None selected"),
-    "My specific question / note:",
-    "  " + (data.get("question").trim() || "____________________________________________________________"),
+    "1. CONTRACTOR / OPERATIONS PROFILE",
+    "Trade segment:      " + data.get("trade"),
+    "Monthly volume:     " + data.get("volume"),
+    "Active bottlenecks: " + (bottlenecks.length ? bottlenecks.join(" | ") : "None selected"),
+    "Workflow / CRM note:",
+    "  " + (data.get("note").trim() || "____________________________________________________________"),
     "",
-    "2. FIVE CORE QUESTIONS FOR EVERY LICENSED ARIZONA ROOFER",
-    ...CORE_QUESTIONS.map((q, i) => `  0${i + 1}. ${q}`),
+    "2. FIVE CORE PRE-INVOICE FILE CHECKS (FOR QUALIFIED PM / ESTIMATOR REVIEW)",
+    ...CORE_CHECKS.map((item, i) => `  0${i + 1}. ${item}`),
   ];
 
   if (aChecked.length > 0 || bChecked.length > 0) {
-    out.push("", "3. WRITTEN PROPOSAL SCOPE AUDIT (12-POINT MATRIX)");
+    out.push("", "3. 12-POINT JOB-FILE COMPLETENESS AUDIT");
     if (aChecked.length > 0) {
-      out.push(`  Bid A Score: ${aChecked.length} / ${TOTAL_AUDIT_ITEMS}`);
+      out.push(`  Job File A Readiness: ${aChecked.length} / ${TOTAL_AUDIT_ITEMS}`);
       out.push(
         aMissing.length
-          ? "  Bid A Missing Items: " + aMissing.join("; ")
-          : "  Bid A Missing Items: None — all 12 points documented."
+          ? "  Job File A Exceptions: " + aMissing.join("; ")
+          : "  Job File A Exceptions: None — all 12 documentation checkpoints present."
       );
     }
     if (bChecked.length > 0) {
-      out.push(`  Bid B Score: ${bChecked.length} / ${TOTAL_AUDIT_ITEMS}`);
+      out.push(`  Job File B Readiness: ${bChecked.length} / ${TOTAL_AUDIT_ITEMS}`);
       out.push(
         bMissing.length
-          ? "  Bid B Missing Items: " + bMissing.join("; ")
-          : "  Bid B Missing Items: None — all 12 points documented."
+          ? "  Job File B Exceptions: " + bMissing.join("; ")
+          : "  Job File B Exceptions: None — all 12 documentation checkpoints present."
       );
     }
   }
 
   out.push(
     "",
-    "4. CONTRACTOR VERIFICATION LOG",
-    "Contractor A & AZ ROC #: _______________________________________________",
-    "Contractor B & AZ ROC #: _______________________________________________",
-    "Verify any Arizona license before signing: https://roc.az.gov/contractor-search",
+    "4. INTERNAL SIGN-OFF LOG",
+    "Project Manager / Estimator: ___________________________________________",
+    "Job Reference ID(s):         ___________________________________________",
+    "B2B fixed-fee inquiries:     https://summithillholdings.com/contact?venture=ridgecourse-roofing",
     "",
-    "This worksheet was generated locally in your browser tab and was not sent to any server."
+    "Generated strictly inside your browser tab — no files or entries were transmitted to any server."
   );
 
   return out.join("\n");
 }
 
 function fillPrintSheet() {
-  document.getElementById("print-text").textContent = visitNotesText();
+  document.getElementById("print-text").textContent = buildPrepChecklistText();
 }
 
-document.querySelectorAll('input[name="bidA"], input[name="bidB"]').forEach(box => {
+document.querySelectorAll('input[name="fileA"], input[name="fileB"]').forEach(box => {
   box.addEventListener("change", updateAuditUI);
 });
 
 if (resetAuditBtn) {
   resetAuditBtn.addEventListener("click", () => {
-    document.querySelectorAll('input[name="bidA"], input[name="bidB"]').forEach(box => {
+    document.querySelectorAll('input[name="fileA"], input[name="fileB"]').forEach(box => {
       box.checked = false;
     });
     updateAuditUI();
@@ -146,16 +146,16 @@ if (resetAuditBtn) {
 }
 
 document.getElementById("save-notes").addEventListener("click", () => {
-  const blob = new Blob([visitNotesText(), "\n"], { type: "text/plain;charset=utf-8" });
+  const blob = new Blob([buildPrepChecklistText(), "\n"], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "ridgecourse-roof-visit-notes.txt";
+  link.download = "ridgecourse-job-file-audit-checklist.txt";
   document.body.append(link);
   link.click();
   link.remove();
   setTimeout(() => URL.revokeObjectURL(url), 2000);
-  result.textContent = "Your Ridgecourse visit notes and scope audit have been downloaded (.txt).";
+  result.textContent = "Your B2B job-file checklist and audit summary have been downloaded (.txt).";
 });
 
 document.getElementById("print-notes").addEventListener("click", () => {
