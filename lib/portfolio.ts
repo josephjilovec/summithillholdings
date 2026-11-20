@@ -586,7 +586,7 @@ const ridgecourseRoofing: PortfolioVenture = {
   founderRole: "Brand architecture, operating & estimating playbook design, software workflow setup, and engagement of an Arizona ROC Qualifying Party and licensed installation partners.",
   nextMilestone: "Complete standalone contracting LLC formation, Qualifying Party agreement, AZ ROC R-42/CR-42 license issuance, surety bonding, and $1M/$2M CGL/Workers’ Comp binding prior to live homeowner intake.",
   opportunity: "Experienced Arizona roofing superintendents, R-42/CR-42 Qualifying Parties, and East Valley trade suppliers interested in building a documentation-first operator can contact Summit Hill Holdings.",
-  externalUrl: "https://summithillholdings.com/roofing",
+  externalUrl: "https://ridgecourseroofing.summithillholdings.com",
   externalLabel: "Open the field manual",
   art: "/roofing/assets/flashing-underlayment.jpg",
   heroArt: "/roofing/assets/hero-sonoran-ridge.jpg",

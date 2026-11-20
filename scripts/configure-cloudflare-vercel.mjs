@@ -61,7 +61,8 @@ const VENTURE_DOMAIN_MAP = [
   { repo: "motoryn", subdomain: "motoryn", cname: "88691644697c3111.vercel-dns-017.com" },
   { repo: "experienceelsewhere", subdomain: "experienceelsewhere", cname: "844a1bb63633ae41.vercel-dns-017.com" },
   { repo: "kinora", subdomain: "kinora", cname: "15dbbea17ffdc795.vercel-dns-017.com" },
-  { repo: "aliasalibi", subdomain: "aliasalibi", cname: "37a94b3bc410c465.vercel-dns-017.com" }
+  { repo: "aliasalibi", subdomain: "aliasalibi", cname: "37a94b3bc410c465.vercel-dns-017.com" },
+  { repo: "ridgecourseroofing", subdomain: "ridgecourseroofing", cname: "6feabcc7d2e09a9a.vercel-dns-017.com" }
 ];
 
 const CRED_PATHS = [

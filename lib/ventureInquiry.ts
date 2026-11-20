@@ -12,7 +12,7 @@ const brands: Record<string, string> = {
   "experience-elsewhere": "Experience Elsewhere", kinora: "Kinora", "alias-alibi": "Alias & Alibi"
 };
 
-const aliases = ["myhealthyaura", "swiftdealsolutions", "djhotwax", "vantahelix", "cannacoreseeds", "snarklogic", "aldermeridian", "jentlemens", "tfsf", "unitedamericanfuture", "worldforwardfoundation", "payerdelta", "givewiseinsights", "advibecentral", "kineticaromatics", "atlasassets", "autocompcorp", "crestlinemetals", "amelioras", "eversteadliving", "qshipsupplyco", "solvanti", "techwater", "motoryn", "experienceelsewhere", "kinora", "aliasalibi"];
+const aliases = ["myhealthyaura", "swiftdealsolutions", "djhotwax", "vantahelix", "cannacoreseeds", "snarklogic", "aldermeridian", "jentlemens", "tfsf", "unitedamericanfuture", "worldforwardfoundation", "payerdelta", "givewiseinsights", "advibecentral", "kineticaromatics", "atlasassets", "autocompcorp", "crestlinemetals", "amelioras", "eversteadliving", "qshipsupplyco", "solvanti", "techwater", "motoryn", "experienceelsewhere", "kinora", "aliasalibi", "ridgecourseroofing"];
 const publicOrigins = new Set([
   "https://summithillholdings.com", "https://www.summithillholdings.com",
   ...aliases.map((alias) => `https://${alias}.summithillholdings.com`),
