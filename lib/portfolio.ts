@@ -129,7 +129,7 @@ const payerDelta: PortfolioVenture = {
   stage: "Denial Recovery & Revenue Integrity Service",
   status: "Available Service",
   summary:
-    "An independent denial recovery service for Arizona specialty practices, with a 22% commercial recovery fee on confirmed collections and separately scoped RCM support, payer intelligence, and cash forecasting.",
+    "An independent denial recovery service for Arizona specialty practices, with 22% of amounts actually recovered on denied claims we appeal and separately scoped RCM support, payer intelligence, and cash forecasting.",
   problem:
     "Arizona specialty practices and surgery centers can lack the time to investigate unworked denials, assemble supporting records, and respond before the payer's appeal deadline.",
   thesis:
