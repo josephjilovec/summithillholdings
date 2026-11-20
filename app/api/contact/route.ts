@@ -39,6 +39,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Please complete the required fields with a valid email address." }, { status: 400 });
     }
 
+    const pilotDetails: string[] = [];
+    if (body.inquiryType === "ridgecourse-office-pilot") {
+      const businessState = clean(body.businessState, 60);
+      const jobState = clean(body.jobState, 60);
+      if (body.filePurpose !== "office" || !businessState || !jobState) {
+        return NextResponse.json({ error: "This pilot requires both states and a confirmed non-claim office purpose." }, { status: 400 });
+      }
+      pilotDetails.push("Ridgecourse office pilot", `Business state: ${businessState}`, `Job state: ${jobState}`, "Purpose: internal non-claim records. Operator screening required before file exchange.");
+    }
+
     const text = [
       "New website inquiry",
       "",
@@ -46,6 +56,7 @@ export async function POST(request: Request) {
       `Email: ${email}`,
       `Area of interest: ${interest || "—"}`,
       "",
+      ...pilotDetails,
       message,
     ].join("\n");
 

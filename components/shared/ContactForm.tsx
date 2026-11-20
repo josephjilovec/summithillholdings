@@ -8,10 +8,13 @@ const interestOptions = ["Operating leader", "Investor / capital partner", "Tech
 export function ContactForm({ mode = "contact", initialInterest = "" }: { mode?: "contact" | "brief"; initialInterest?: string }) {
   const [state, setState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const roofingPilot = mode === "contact" && initialInterest === "Ridgecourse Roofing";
+  const [filePurpose, setFilePurpose] = useState("");
+  const needsClarification = roofingPilot && (filePurpose === "claim" || filePurpose === "unknown");
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (state === "sending") return;
+    if (state === "sending" || needsClarification) return;
     setState("sending");
     setMessage("");
     const form = event.currentTarget;
@@ -27,6 +30,7 @@ export function ContactForm({ mode = "contact", initialInterest = "" }: { mode?:
       setState("success");
       setMessage(payload.message || "Your message was sent.");
       form.reset();
+      setFilePurpose("");
     } catch (error) {
       setState("error");
       setMessage(error instanceof Error ? error.message : "The message could not be delivered.");
@@ -43,7 +47,25 @@ export function ContactForm({ mode = "contact", initialInterest = "" }: { mode?:
             <label>Email address *<input name="email" type="email" required maxLength={200} autoComplete="email" /></label>
           </div>
           <label>Area of interest (optional)<input name="interest" defaultValue={initialInterest} maxLength={200} placeholder="Specific venture, media inquiry, advisory, general collaboration…" /></label>
-          <label>Short message *<textarea name="message" required maxLength={3000} rows={7} /></label>
+          {roofingPilot && (
+            <>
+              <input type="hidden" name="inquiryType" value="ridgecourse-office-pilot" />
+              <div className="form-row">
+                <label>Business state *<input name="businessState" required maxLength={60} /></label>
+                <label>Job state *<input name="jobState" required maxLength={60} /></label>
+              </div>
+              <label>What will the records be used for? *
+                <select name="filePurpose" required value={filePurpose} onChange={event => setFilePurpose(event.target.value)}>
+                  <option value="">Choose a purpose</option>
+                  <option value="office">Internal office records, independent of any insurance claim</option>
+                  <option value="claim">An existing or anticipated insurance claim</option>
+                  <option value="unknown">The end use is unclear</option>
+                </select>
+              </label>
+              {needsClarification && <p role="status">This pilot accepts ordinary non-claim office work. Keep the records with your office. If you identify a separate non-claim task, you can inquire about that task here.</p>}
+            </>
+          )}
+          <label>{roofingPilot ? "Office task and approximate file count" : "Short message"} *<textarea name="message" required maxLength={3000} rows={7} /></label>
         </>
       ) : (
         <>
@@ -85,7 +107,7 @@ export function ContactForm({ mode = "contact", initialInterest = "" }: { mode?:
       <label className="honeypot" aria-hidden="true">Website<input name="companyWebsite" tabIndex={-1} autoComplete="off" /></label>
       <label className="consent"><input type="checkbox" name="consent" value="yes" required /> <span>I agree to be contacted about this inquiry. Submitting this form does not create a confidential, advisory, investment, or partnership relationship.</span></label>
       <div className="form-submit-row">
-        <button className="button" type="submit" disabled={state === "sending"}>{state === "sending" ? "Sending…" : mode === "brief" ? "Request venture brief" : "Send inquiry"}</button>
+        <button className="button" type="submit" disabled={state === "sending" || needsClarification}>{state === "sending" ? "Sending…" : mode === "brief" ? "Request venture brief" : "Send inquiry"}</button>
         <span className={`form-status ${state}`} role="status" aria-live="polite">{message}</span>
       </div>
     </form>

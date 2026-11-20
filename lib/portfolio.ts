@@ -575,24 +575,24 @@ const kinora: PortfolioVenture = {
 const ridgecourseRoofing: PortfolioVenture = {
   slug: "ridgecourse-roofing",
   name: "Ridgecourse Roofing",
-  eyebrow: "National B2B roofing & restoration ops",
+  eyebrow: "Clerical support for roofing and restoration offices",
   category: "Industrial",
   stage: "Prelaunch",
   status: "In Development",
-  summary: "National B2B roofing and restoration back-office operations, job-file QA, photo/evidence indexing, and billing-support documentation on fixed fees. Not a Licensed Roofing Contractor & Not a Public Adjuster.",
-  problem: "Licensed roofing contractors, water-mitigation firms, and restoration crews already generate leads through ads and field reps, yet lose weeks of cash flow to unindexed crew photos, incomplete daily moisture logs, mismatched supplier invoices, and stalled permit/COI/lien-waiver closeouts.",
-  thesis: "Remote, fixed-fee back-office QA—4-stage photo indexing, estimate-to-invoice reconciliation, moisture-log audits, closeout dossiers, and public NOAA/NWS storm-swath logs—clears post-sale billing bottlenecks nationwide without adding fixed office payroll or claim-percentage fees.",
-  currentState: "Active Phase 1 B2B website and interactive 12-point Job-File & Scope Completeness Auditor are live at ridgecourseroofing.summithillholdings.com and /roofing. Strictly fixed per-file, per-batch, or fixed monthly ops capacity; the licensed Arizona residential contractor track is archived privately for potential Phase 2 activation.",
-  founderRole: "B2B back-office workflow architecture, 12-point file-audit standards, fixed-fee scoping, legal-boundary governance, and national contractor onboarding.",
-  nextMilestone: "Complete formal Arizona and multi-state UPPA counsel review of B2B SOWs and deliver initial fixed-fee job-file QA pilots for licensed roofing and water-mitigation operators.",
-  opportunity: "Licensed roofing contractors, water-mitigation companies, fire/contents pack-out restorers, and multi-site commercial/HOA storm vendors seeking fixed-fee remote file-audit capacity can inquire through Summit Hill Holdings.",
+  summary: "Ridgecourse Roofing organizes photos, supplier records and closeout paperwork for Arizona roofing and restoration businesses. The fixed-fee pilot covers ordinary, non-claim office files.",
+  problem: "A job may end with photos on a phone, delivery tickets in an inbox and unsigned or missing copies on a shared drive. Office staff need to find the sources and see which records still need attention.",
+  thesis: "A remote desk can organize records by supplied identifiers and return a short list of gaps. The contractor keeps control of field work, technical judgments, billing and legal decisions.",
+  currentState: "The Arizona pilot accepts inquiries for one non-claim job at a time. The site includes a browser-local two-file checklist. Ridgecourse holds neither a contractor license nor an insurance adjuster license.",
+  founderRole: "Define the clerical scope with each business, verify the file purpose and review the office handoff.",
+  nextMilestone: "Complete a fixed-fee Arizona pilot and measure the time spent indexing one file. Other U.S. locations are assessed before any engagement.",
+  opportunity: "Arizona roofing and restoration offices can inquire about a photo index, supplier reference matching or a closeout record list. The pilot excludes construction, insurance supplements and claim support.",
   externalUrl: "https://ridgecourseroofing.summithillholdings.com",
-  externalLabel: "Open B2B file-audit site",
+  externalLabel: "Visit the Ridgecourse office pilot",
   art: "/roofing/assets/flashing-underlayment.jpg",
   heroArt: "/roofing/assets/hero-sonoran-ridge.jpg",
   accent: "#E0A171",
   accentSoft: "rgba(224,161,113,.17)",
-  tags: ["B2B roofing ops", "job-file QA", "photo indexing", "restoration billing support", "fixed-fee"]
+  tags: ["roofing offices", "restoration offices", "photo indexing", "supplier records", "Arizona pilot"]
 };
 
 export const ventures = parsePortfolioVentureList(

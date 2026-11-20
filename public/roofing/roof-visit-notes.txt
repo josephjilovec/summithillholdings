@@ -1,43 +1,25 @@
-RIDGECOURSE ROOFING | 12-POINT B2B JOB-FILE & CLOSEOUT AUDIT CHECKLIST
-Not a Licensed Roofing Contractor & Not a Public Adjuster
-Fixed-Fee B2B Operations, File Audits & Documentation Support Nationwide (US)
-https://ridgecourseroofing.summithillholdings.com
+RIDGECOURSE ROOFING | OFFICE FILE WORKSHEET
+Arizona B2B pilot for non-claim office records
 
-------------------------------------------------------------------------
-1. CONTRACTOR / OPERATIONS PROFILE
-------------------------------------------------------------------------
-Trade segment: [ ] Roofing  [ ] Water Mitigation  [ ] Fire/Contents  [ ] Multi-Site Storm
-Job Ref ID(s): _________________________________________________________
-Assigned PM / Estimator: _______________________________________________
+Internal job alias ____________________    Office contact ____________________
 
-------------------------------------------------------------------------
-2. 12-POINT JOB-FILE COMPLETENESS & PRE-BILLING CHECKLIST
-------------------------------------------------------------------------
-[ ] 01. Signed customer scope & active contractor license # on file
-[ ] 02. Aerial measurement / affected area takeoff reconciled to scope
-[ ] 03. Stage 1: Timestamped pre-work baseline photos indexed
-[ ] 04. Stage 2: Bare-deck sheathing photos + signed Change Orders attached
-[ ] 05. Stage 3: Dry-in underlayment, W-valley metal & flashing photos indexed
-[ ] 06. Supplier material drop invoices matched to scope quantities
-[ ] 07. Subcontractor draw invoice + unexpired W-9 & CGL/WC COI verified
-[ ] 08. Daily moisture/psychrometric logs & equipment day counts complete
-[ ] 09. Municipal permit card & mid/final inspection sign-off attached
-[ ] 10. Public NOAA/NWS storm-swath date/hail/wind citation attached
-[ ] 11. Statutory conditional / unconditional supplier & sub lien waivers
-[ ] 12. Stage 4: Final completion photos, warranty summary & closeout PDF
+Mark the references you can locate. Note which rows do not apply to this file.
 
-------------------------------------------------------------------------
-3. EXCEPTION NOTES FOR QUALIFIED PM / ESTIMATOR REVIEW
-------------------------------------------------------------------------
-Missing photos or unlogged moisture dates: _____________________________
-________________________________________________________________________
+[ ] 01. Job alias — A short internal code used on the folder and index.
+[ ] 02. Office contact — A designated person who can resolve open questions.
+[ ] 03. Requested records list — The office’s own list of documents it expects.
+[ ] 04. Original file register — Source filenames and folder references recorded.
+[ ] 05. Photo labels — The stages or locations supplied by the client.
+[ ] 06. Photo dates — Source dates copied, with unknown dates marked.
+[ ] 07. Invoice references — Supplier invoice IDs recorded as supplied.
+[ ] 08. Ticket matches — Pairings by existing PO or delivery-ticket ID.
+[ ] 09. Visible differences — Conflicting source values listed for office review.
+[ ] 10. Daily log inventory — Expected dates supplied by the office and any blank entries.
+[ ] 11. Closeout document list — Titles and receipt status of documents requested by the office.
+[ ] 12. Handoff copy — Dated index and open-items list for the named recipient.
 
-Invoice-to-scope variances to verify: __________________________________
-________________________________________________________________________
+Open items / items outside this file ________________________________________
 
-B2B fixed-fee audit inquiries:
+This records document presence only. Your office decides billing, technical and legal questions.
+Use the public inquiry for business contact details and a short description only.
 https://summithillholdings.com/contact?venture=ridgecourse-roofing
-contact@summithillholdings.com
-
-Strictly B2B back-office technical support. Zero claim percentages,
-zero carrier negotiation, and zero unlicensed contracting.
