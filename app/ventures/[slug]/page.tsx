@@ -31,6 +31,9 @@ export default async function VenturePage({ params }: { params: Promise<{ slug: 
   const ventureImage = getVentureImage(venture.slug);
   const projectImage = ventureImage?.src ?? venture.heroArt;
   const jsonLd = ventureJsonLd(venture);
+  const projectContact = venture.slug === "ridgecourse-roofing"
+    ? "/contact?venture=ridgecourse-roofing"
+    : "/contact";
 
   return (
     <>
@@ -73,7 +76,7 @@ export default async function VenturePage({ params }: { params: Promise<{ slug: 
           <div className="hero-actions">
             {venture.externalUrl && <a className="button" href={venture.externalUrl} target="_blank" rel="noreferrer">{venture.externalLabel ?? "View website"} ↗</a>}
             <PrivateBriefRequest defaultVenture={venture.slug} label="Request executive brief" />
-            <Link href="/contact" className="text-link">Discuss this project <span>↗</span></Link>
+            <Link href={projectContact} className="text-link">Discuss this project <span>↗</span></Link>
           </div>
         </div>
         <div className="project-hero-art">
