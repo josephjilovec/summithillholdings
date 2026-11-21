@@ -47,6 +47,7 @@ const lifecycleBySlug: Record<string, VentureLifecycle> = {
   "techwater": "DESIGN",
   "motoryn": "DESIGN",
   "experience-elsewhere": "DESIGN",
+  "avenfolio-health": "DESIGN",
   "ridgecourse-roofing": "DESIGN"
 };
 
@@ -79,6 +80,7 @@ const tierBySlug: Record<string, VentureTier> = {
   "techwater": "Incubation Concepts",
   "motoryn": "Incubation Concepts",
   "experience-elsewhere": "Incubation Concepts",
+  "avenfolio-health": "Incubation Concepts",
   "ridgecourse-roofing": "Incubation Concepts"
 };
 
@@ -118,6 +120,7 @@ const businessStatusBySlug: Record<string, BusinessStatus> = {
   "techwater": "Concept",
   "motoryn": "Concept",
   "experience-elsewhere": "Concept",
+  "avenfolio-health": "In Development",
   "ridgecourse-roofing": "In Development"
 };
 
@@ -572,6 +575,27 @@ const kinora: PortfolioVenture = {
   tags: ["technology", "ai", "matching", "community", "founder-teams", "privacy"]
 };
 
+const avenfolioHealth: PortfolioVenture = {
+  slug: "avenfolio-health",
+  name: "Avenfolio Health",
+  eyebrow: "Patient records / dental and vision first",
+  category: "Technology",
+  stage: "Concept designed",
+  status: "In Development",
+  summary: "A specialty-first patient portal concept for dental and eye care practices, with a future patient-authorized view of records from participating hospital and clinic systems.",
+  problem: "Patients visit different practices, but their records are scattered across office charts, portals, paper files and separate hospital networks. Specialty records can be hard to find and understand in context.",
+  thesis: "A clear practice portal with traceable source information could help patients navigate dental and vision records now, then support a broader view through verified identity and authorized, standards-based connections.",
+  currentState: "A branded concept website, proposed location-based pricing and synthetic interactive record view are available for private review. No real patient records, provider interfaces or production portal are live.",
+  founderRole: "Concept direction, specialty-first positioning, patient permission model, brand and business model design.",
+  nextMilestone: "Interview dental and vision practices, validate the first record workflow and integration path, and complete legal and security design before any protected health information is handled.",
+  opportunity: "Dental and vision practice partners, EHR integration specialists, clinical informaticians, privacy and security advisers, and future hospital network partners.",
+  art: "/project-hero/avenfolio-hero.svg",
+  heroArt: "/project-hero/avenfolio-hero.svg",
+  accent: "#78D8C7",
+  accentSoft: "rgba(120,216,199,.16)",
+  tags: ["health technology", "patient portal", "dental", "vision", "interoperability", "in-development"]
+};
+
 const ridgecourseRoofing: PortfolioVenture = {
   slug: "ridgecourse-roofing",
   name: "Ridgecourse Roofing",
@@ -596,7 +620,7 @@ const ridgecourseRoofing: PortfolioVenture = {
 };
 
 export const ventures = parsePortfolioVentureList(
-  [...rawPortfolioVentures, payerDelta, givewiseInsights, adVibeCentral, kineticAromatics, atlasAssets, autoCompCorp, crestlineMetals, ameliora, eversteadLiving, qshipSupplyCo, solvanti, techwater, motoryn, experienceElsewhere, kinora, ridgecourseRoofing].map((venture) => {
+  [...rawPortfolioVentures, payerDelta, givewiseInsights, adVibeCentral, kineticAromatics, atlasAssets, autoCompCorp, crestlineMetals, ameliora, eversteadLiving, qshipSupplyCo, solvanti, techwater, motoryn, experienceElsewhere, kinora, avenfolioHealth, ridgecourseRoofing].map((venture) => {
     const lifecycle = lifecycleBySlug[venture.slug] ?? "IDENTIFY";
     return {
       ...venture,
