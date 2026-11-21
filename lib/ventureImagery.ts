@@ -8,6 +8,11 @@ export type VentureImage = {
 // The existing venture.accent and venture.accentSoft values remain the source of
 // truth for hover glow, interface tinting, Project Files, and Capital Files.
 export const ventureImagery: Record<string, VentureImage> = {
+  "avenfolio-health": {
+    src: "/project-hero/avenfolio-hero.svg",
+    alt: "Illustration of separately labeled dental, vision and future hospital records around a patient view; no live data connections",
+    position: "center",
+  },
   "ridgecourse-roofing": {
     src: "/roofing/assets/hero-sonoran-ridge.jpg",
     alt: "Illustrated golden-hour Sonoran Desert terracotta tile roofline facing the Superstition Mountains",
