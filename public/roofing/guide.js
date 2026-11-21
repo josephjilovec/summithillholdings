@@ -18,7 +18,7 @@ function updateCounts() {
   });
   reset.hidden = counts.every(count => count === 0);
   summary.textContent = reset.hidden
-    ? "Choose the records you can locate. Use the worksheet for anything outside your file."
+    ? "Choose the source records you can locate. Use the worksheet for anything outside your file."
     : "Marked present in File A: " + counts[0] + ". File B: " + counts[1] +
       ". Unchecked rows export as unmarked. Your office decides which records apply.";
 }
@@ -26,8 +26,8 @@ function updateCounts() {
 function worksheetText() {
   const values = new FormData(worksheet);
   const lines = [
-    "RIDGECOURSE ROOFING | OFFICE FILE WORKSHEET",
-    "Arizona B2B pilot for ordinary non-claim records",
+    "RIDGECOURSE ROOFING | JOB-FILE & SCOPE COMPLETENESS WORKSHEET",
+    "Remote U.S. B2B inquiry; each job purpose and jurisdiction is screened",
     "",
     "Business type: " + values.get("trade"),
     "File volume: " + values.get("volume"),
@@ -46,7 +46,8 @@ function worksheetText() {
     }
   }
   lines.push("", "Unchecked items may be outside this file. This worksheet records selections only.",
-    "Your office decides billing, technical and legal questions.", "", "Pilot inquiries: " + inquiry);
+    "This is not a completion, billing, insurance or claim-readiness determination.",
+    "Your qualified office team decides billing, technical and legal questions.", "", "B2B inquiries: " + inquiry);
   return lines.join("\n");
 }
 
@@ -65,7 +66,7 @@ document.getElementById("save-notes").addEventListener("click", () => {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "ridgecourse-office-file-checklist.txt";
+  link.download = "ridgecourse-job-file-checklist.txt";
   document.body.append(link);
   link.click();
   link.remove();

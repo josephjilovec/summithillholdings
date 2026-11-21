@@ -1,25 +1,26 @@
-RIDGECOURSE ROOFING | OFFICE FILE WORKSHEET
-Arizona B2B pilot for non-claim office records
+RIDGECOURSE ROOFING | JOB-FILE & SCOPE COMPLETENESS WORKSHEET
+Remote U.S. B2B inquiries; each job purpose and jurisdiction is screened
 
 Internal job alias ____________________    Office contact ____________________
 
 Mark the references you can locate. Note which rows do not apply to this file.
 
-[ ] 01. Job alias — A short internal code used on the folder and index.
-[ ] 02. Office contact — A designated person who can resolve open questions.
-[ ] 03. Requested records list — The office’s own list of documents it expects.
-[ ] 04. Original file register — Source filenames and folder references recorded.
-[ ] 05. Photo labels — The stages or locations supplied by the client.
-[ ] 06. Photo dates — Source dates copied, with unknown dates marked.
-[ ] 07. Invoice references — Supplier invoice IDs recorded as supplied.
-[ ] 08. Ticket matches — Pairings by existing PO or delivery-ticket ID.
-[ ] 09. Visible differences — Conflicting source values listed for office review.
-[ ] 10. Daily log inventory — Expected dates supplied by the office and any blank entries.
-[ ] 11. Closeout document list — Titles and receipt status of documents requested by the office.
-[ ] 12. Handoff copy — Dated index and open-items list for the named recipient.
+[ ] 01. Job alias and office reviewer — Internal code and named business reviewer.
+[ ] 02. Client-approved scope version — Current scope or work-order reference.
+[ ] 03. Before or arrival photos — Starting images when applicable.
+[ ] 04. Decking or substrate photos — Surface images when applicable.
+[ ] 05. Flashing or detail photos — Details and penetrations when applicable.
+[ ] 06. Dry-in or mitigation photos — Work-stage images when applicable.
+[ ] 07. Completion photos — Final images for office review.
+[ ] 08. Photo dates and filenames — Original names and supplied timestamps.
+[ ] 09. Supplier and subcontractor records — PO, ticket and invoice IDs.
+[ ] 10. Scope-to-invoice variance log — Literal differences with source references.
+[ ] 11. Daily moisture-log inventory — Expected rooms, dates or tags and blanks.
+[ ] 12. Permit and closeout list — Client checklist and existing COI/W-9/waiver copies.
 
 Open items / items outside this file ________________________________________
 
-This records document presence only. Your office decides billing, technical and legal questions.
+This records document presence only, not completion, billing or claim readiness.
+Your qualified office team decides billing, technical and legal questions.
 Use the public inquiry for business contact details and a short description only.
 https://summithillholdings.com/contact?venture=ridgecourse-roofing

@@ -90,7 +90,7 @@ img { display: block; max-width: 100%; }
 }
 .header-contact:hover { background: var(--soft); border-color: var(--ink); }
 
-/* PRE-LAUNCH LICENSING STATUS RIBBON */
+/* B2B service and licensing disclosure */
 .status-band {
   background: #ecefe5;
   border-bottom: 1px solid var(--line);
@@ -211,7 +211,7 @@ h3 { font-size: clamp(1.75rem, 2.25vw, 2.25rem); line-height: 1.05; }
 }
 .section-head > p { max-width: 31rem; color: var(--muted); }
 
-/* 4-SYSTEM MATERIAL CARDS (2x2 ARCHITECTURAL GRID) */
+/* B2B service cards */
 .material-grid {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1.35rem, 2.4vw, 2.2rem); align-items: start;
@@ -228,6 +228,14 @@ h3 { font-size: clamp(1.75rem, 2.25vw, 2.25rem); line-height: 1.05; }
 .material-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 .8rem 2rem rgba(28, 40, 36, .1);
+}
+.material-card:last-child {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+}
+.material-card:last-child .material-media img {
+  height: 100%; aspect-ratio: auto;
 }
 .material-media { position: relative; overflow: hidden; background: #26312c; }
 .material-media img {
@@ -552,6 +560,8 @@ fieldset input[type="checkbox"] {
   .header-contact { font-size: .84rem; padding: .42rem .7rem; }
   .section-head, .anatomy-head { display: grid; grid-template-columns: 1fr; gap: 1.1rem; }
   .material-grid, .layer-grid, .season-strip, .form-row-2 { grid-template-columns: 1fr; }
+  .material-card:last-child { grid-column: auto; display: block; }
+  .material-card:last-child .material-media img { height: auto; aspect-ratio: 16 / 10; }
   .season-item { border-right: 0; }
   .gate { grid-template-columns: 1fr; gap: .55rem; }
   .gate-badge { width: fit-content; }

@@ -599,24 +599,24 @@ const avenfolioHealth: PortfolioVenture = {
 const ridgecourseRoofing: PortfolioVenture = {
   slug: "ridgecourse-roofing",
   name: "Ridgecourse Roofing",
-  eyebrow: "Clerical support for roofing and restoration offices",
+  eyebrow: "National B2B roofing and restoration operations",
   category: "Industrial",
   stage: "Prelaunch",
   status: "In Development",
-  summary: "Ridgecourse Roofing organizes photos, supplier records and closeout paperwork for Arizona roofing and restoration businesses. The fixed-fee pilot covers ordinary, non-claim office files.",
-  problem: "A job may end with photos on a phone, delivery tickets in an inbox and unsigned or missing copies on a shared drive. Office staff need to find the sources and see which records still need attention.",
-  thesis: "A remote desk can organize records by supplied identifiers and return a short list of gaps. The contractor keeps control of field work, technical judgments, billing and legal decisions.",
-  currentState: "The Arizona pilot accepts inquiries for one non-claim job at a time. The site includes a browser-local two-file checklist. Ridgecourse holds neither a contractor license nor an insurance adjuster license.",
-  founderRole: "Define the clerical scope with each business, verify the file purpose and review the office handoff.",
-  nextMilestone: "Complete a fixed-fee Arizona pilot and measure the time spent indexing one file. Other U.S. locations are assessed before any engagement.",
-  opportunity: "Arizona roofing and restoration offices can inquire about a photo index, supplier reference matching or a closeout record list. The pilot excludes construction, insurance supplements and claim support.",
+  summary: "Ridgecourse organizes post-sale job files for licensed U.S. roofing and restoration teams: photo and evidence indexes, supplier and subcontractor references, missing-log checks, closeout trackers and regional storm reports. Remote, fixed-fee work is screened before acceptance.",
+  problem: "Contractors can win leads through ads and field sales, then find photos on phones, invoices in email, daily logs in shared drives and permit or vendor copies scattered across an office. Their PM needs a traceable file before its own billing and closeout review.",
+  thesis: "A remote B2B desk can return a four-stage photo index, source-cited discrepancies and missing-item register while the licensed contractor retains field, estimating, billing, legal and insurance decisions.",
+  currentState: "Ridgecourse accepts nationwide B2B inquiries for screened non-claim administrative work. Its 12-point browser-local job-file checklist is illustrative, with no completed client jobs claimed. Ridgecourse holds no roofing or public-adjuster license; claim-specific preparation remains on hold pending activity-specific review. The licensed Arizona contractor blueprint is archived privately for Phase 2.",
+  founderRole: "Screen each buyer, job jurisdiction and end use; agree on a fixed office scope and authorized transfer route; review the source-linked handoff.",
+  nextMilestone: "Complete one eligible fixed-fee B2B file or batch pilot, measure delivery time and corrections, and document repeat demand before expanding capacity.",
+  opportunity: "Licensed roofers, water-mitigation companies, fire/contents restorers and multi-site storm vendors can use remote file QA, photo indexing, literal scope-to-invoice variance logs, closeout coordination and public regional event records. Construction and claim-adjusting work are excluded.",
   externalUrl: "https://ridgecourseroofing.summithillholdings.com",
-  externalLabel: "Visit the Ridgecourse office pilot",
+  externalLabel: "Visit Ridgecourse B2B operations",
   art: "/roofing/assets/flashing-underlayment.jpg",
   heroArt: "/roofing/assets/hero-sonoran-ridge.jpg",
   accent: "#E0A171",
   accentSoft: "rgba(224,161,113,.17)",
-  tags: ["roofing offices", "restoration offices", "photo indexing", "supplier records", "Arizona pilot"]
+  tags: ["roofing operations", "restoration operations", "job-file QA", "photo indexing", "billing support", "national B2B"]
 };
 
 export const ventures = parsePortfolioVentureList(
