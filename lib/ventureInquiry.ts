@@ -9,7 +9,8 @@ const brands: Record<string, string> = {
   "kinetic-aromatics": "Kinetic Aromatics", "atlas-assets": "Atlas Assets", "autocomp-corp": "AutoComp Corp",
   "crestline-metals": "Crestline Metals", ameliora: "Amelioras", "everstead-living": "Everstead Living",
   "qship-supply-co": "QShip Supply Co.", solvanti: "Solvanti", techwater: "TechWater", motoryn: "Motoryn",
-  "experience-elsewhere": "Experience Elsewhere", kinora: "Kinora", "alias-alibi": "Alias & Alibi"
+  "experience-elsewhere": "Experience Elsewhere", kinora: "Kinora", "alias-alibi": "Alias & Alibi",
+  "avenfolio-health": "Avenfolio Health"
 };
 
 const aliases = ["myhealthyaura", "swiftdealsolutions", "djhotwax", "vantahelix", "cannacoreseeds", "snarklogic", "aldermeridian", "jentlemens", "tfsf", "unitedamericanfuture", "worldforwardfoundation", "payerdelta", "givewiseinsights", "advibecentral", "kineticaromatics", "atlasassets", "autocompcorp", "crestlinemetals", "amelioras", "eversteadliving", "qshipsupplyco", "solvanti", "techwater", "motoryn", "experienceelsewhere", "kinora", "aliasalibi", "ridgecourseroofing"];
